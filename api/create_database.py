@@ -44,6 +44,14 @@ async def create_database(db_name: str):
         with open("api/database/schema.sql", "r") as f:
             schema_sql = f.read()
         await conn.execute(schema_sql)
+        
+        with open("api/database/device.sql", "r") as f:
+            device_sql = f.read()
+        await conn.execute(device_sql)
+
+        with open("api/database/branch.sql", "r") as f:
+            branch_sql = f.read()
+        await conn.execute(branch_sql)
 
         print(f"Schema and stored procedures initialized in '{db_name}'.")
 

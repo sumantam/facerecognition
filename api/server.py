@@ -45,6 +45,8 @@ async def add_user(name: str, email: str, branch: str, mobile: str):
     conn = await get_db_connection()
     try:
         await conn.execute("CALL add_user($1, $2, $3, $4);", name, email, branch, mobile)
+        fd = client.FaceData()
+        response = fd.face_data_add('blackFD', '1', '4', 'tessst', 'male', '19940226T000000+0500', 'Tashkent', 'https://i.ibb.co/P9rJSTQ/murod.jpg')
         return {"message": "User added successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

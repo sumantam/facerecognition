@@ -13,6 +13,8 @@ async def execute_procedure(db_name:str):
     try:
         # Call the stored procedure using CALL
         await conn.execute("CALL createUserTable($1);", "public")
+        await conn.execute("CALL createDeviceTable($1);", "public")
+        await conn.execute("CALL createBranchTable($1);", "public")
         print("Procedure executed successfully.")
 
     except Exception as e:
