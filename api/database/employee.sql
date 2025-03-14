@@ -8,6 +8,7 @@ CREATE OR REPLACE PROCEDURE addEmployee(
     branchName VARCHAR,
     branchCode INTEGER,
     location VARCHAR(255),
+    mobileNumber VARCHAR(255),
     img JSONB,    
     schemaName VARCHAR DEFAULT 'public'
 )
@@ -16,16 +17,17 @@ DECLARE
     add_employee_command TEXT;
 BEGIN
     add_employee_command := format('
-        INSERT INTO "schemaName"."Employees" (
+        INSERT INTO %I."Employee" (
             empID,
             email,
             name,
             branchName,
             branchCode,
             location,
+            mobileNumber,
             img
         )                                                                                                                                      
-        VALUES ($1, $2, $3, $4, $5, $6, $7);                                                                                                                                  
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8);                                                                                                                                  
         ', schemaName
     );
 
@@ -33,7 +35,8 @@ BEGIN
     RAISE NOTICE 'Executing: %', add_employee_command;
 
     -- Execute the command
-    EXECUTE add_employee_command;
+    EXECUTE add_employee_command 
+    USING empID, email, name, branchName, branchCode, location, mobileNumber, img;
 END;
 $$;
 

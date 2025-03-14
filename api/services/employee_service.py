@@ -5,6 +5,7 @@ import json
 from dotenv import load_dotenv
 import api.hikvision_isapi_wrapper as client
 from api.db import get_db_connection
+from fastapi import HTTPException
 
 # ✅ Load environment variables
 load_dotenv()
@@ -17,10 +18,16 @@ async def add_employee_service(
     branchname: str,
     branchcode: int,
     location: str,
+    mobilenumber: str,
     img
 ):
     conn = await get_db_connection()
     try:
+
+        # ✅ Confirm which database FastAPI is connected to
+        db_name = await conn.fetchval("SELECT current_database();")
+        print(f"🔍 Connected to database: {db_name}")  # ✅ Check DB name
+
         # ✅ Save the image file to a local folder
         img_folder = "uploaded_images"
         os.makedirs(img_folder, exist_ok=True)  # ✅ Create folder if it doesn't exist
@@ -32,16 +39,55 @@ async def add_employee_service(
         # ✅ Convert to JSON format for PostgreSQL jsonb field
         img_json = json.dumps({"path": img_path})
 
-        # ✅ Call Stored Procedure
+
+        # ✅ Print the generated SQL command
+        sql_statement = f"""
+        CALL public.addEmployee(
+            {int(empid)},
+            '{email}',
+            '{name}',
+            '{branchname}',
+            {int(branchcode)},
+            '{location}',
+            '{mobilenumber}',
+            '{img_json}'::jsonb
+        );
+        """
+        print(f"🔍 SQL Statement to Execute:\n{sql_statement}")  # ✅ Print exact SQL
+        
+        # ✅ Execute the stored procedure
+        # await conn.execute(
+        #     "CALL addEmployee($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::INTEGER, $6::VARCHAR, $7::VARCHAR, $8::JSONB);",
+        #     int(empid),  # ✅ Ensure INTEGER
+        #     email,  # ✅ Ensure VARCHAR
+        #     name,
+        #     branchname,
+        #     int(branchcode),  # ✅ Ensure INTEGER
+        #     location,
+        #     mobilenumber,
+        #     json.loads(img_json)  # ✅ Ensure JSONB
+        # )
+
         await conn.execute(
-            "CALL addEmployee($1, $2, $3, $4, $5, $6, $7);",
-            empid, email, name, branchname, branchcode, location, img_json
+            "CALL addEmployee($1, $2, $3, $4, $5, $6, $7, $8, $9);",
+            int(empid),  # ✅ PostgreSQL handles type conversion
+            email,
+            name,
+            branchname,
+            int(branchcode),
+            location,
+            mobilenumber,  # ✅ Now including mobile number
+            json.dumps(img_json),  # ✅ Ensures JSONB type
+            "public"  # ✅ Ensure schema name is passed
         )
+
+        return {"message": "User added successfully"}
 
         fd = client.FaceData()
         # response = fd.face_data_add('blackFD', '1', '4', 'tessst', 'male', '19940226T000000+0500', 'Tashkent', 'https://i.ibb.co/P9rJSTQ/murod.jpg')
         return {"message": "User added successfully"}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"❌ Error calling stored procedure: {e}")  # ✅ Print error
+        raise HTTPException(status_code=500, detail=f"Error adding employee: {e}")
     finally:
         await conn.close()

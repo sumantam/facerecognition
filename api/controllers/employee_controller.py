@@ -13,10 +13,11 @@ async def add_employee(
     branchname: str = Form(...),
     branchcode: int = Form(...),
     location: str = Form(...),
+    mobilenumber: str = Form(...),
     img: UploadFile = File(...)
 ):
     try:
-        result = await add_employee_service(empid, email, name, branchname, branchcode, location, img)
+        result = await add_employee_service(empid, email, name, branchname, branchcode, location, mobilenumber, img)
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
