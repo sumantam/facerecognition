@@ -41,7 +41,7 @@ async def create_database(db_name: str):
         )
 
         # Execute schema.sql (tables + stored procedures)
-        with open("api/database/schema.sql", "r") as f:
+        with open("api/database/employee.sql", "r") as f:
             schema_sql = f.read()
         await conn.execute(schema_sql)
         

@@ -1,12 +1,31 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Depends
 import asyncpg
+import os
+from dotenv import load_dotenv
+# from pydantic import BaseModel
+import api.hikvision_isapi_wrapper as client  # ✅ Import FaceData client
+import json  # ✅ Convert dict to JSON
 from api.create_database import create_database
 from api.execute_proc import execute_procedure
 # Run the async function
 import asyncio
-import api.hikvision_isapi_wrapper as client
+from api.controllers.employee_controller import router as employee_router  # ✅ Import controller
+
+
 
 app = FastAPI()
+
+# ✅ Register routers
+app.include_router(employee_router)
+
+# ✅ Define Pydantic Model for Employee
+# class Employee(BaseModel):
+#     empid: int
+#     email: str
+#     name: str
+#     branchname: str
+#     branchcode: int
+#     location: str
 
 # Database Connection Helper
 async def get_db_connection():
@@ -39,16 +58,3 @@ async def get_users():
     finally:
         await conn.close()
 
-# ✅ Add a New User (Call Stored Procedure)
-@app.post("/users")
-async def add_user(name: str, email: str, branch: str, mobile: str):
-    conn = await get_db_connection()
-    try:
-        await conn.execute("CALL add_user($1, $2, $3, $4);", name, email, branch, mobile)
-        fd = client.FaceData()
-        response = fd.face_data_add('blackFD', '1', '4', 'tessst', 'male', '19940226T000000+0500', 'Tashkent', 'https://i.ibb.co/P9rJSTQ/murod.jpg')
-        return {"message": "User added successfully"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    finally:
-        await conn.close()
