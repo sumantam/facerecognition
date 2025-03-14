@@ -2,30 +2,24 @@ import asyncpg
 import os
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
 
-async def create_database(db_name):
+async def create_database(db_name: str):
     """
-    Connects to the default 'postgres' database and creates 'db_name' if it doesn't exist.
+    Creates 'db_name' if it doesn't exist and initializes tables & stored procedures.
     """
     conn = None
     try:
-        # Connect to the default 'postgres' database
-        # conn = await asyncpg.connect(
-        #     user="postgres",
-        #     host="/var/run/postgresql",  # Use peer authentication via Unix socket
-        #     database="postgres"  # Always connect to the default DB first
-        # )
-
+        # Step 1: Connect to the 'postgres' database to check if 'faceDetect_db' exists
         conn = await asyncpg.connect(
-            user=os.getenv("DB_USER", "postgres"),  # Default to 'postgres' if missing
+            user=os.getenv("DB_USER", "postgres"),
             password=os.getenv("DB_PASSWORD", ""),
             host=os.getenv("DB_HOST", "localhost"),
             port=os.getenv("DB_PORT", "5432"),
-            database=os.getenv("DB_DATABASE", "postgres")
+            database="postgres"  # ✅ Initial connection to default database
         )
 
-        # Check if the database already exists
         db_exists = await conn.fetchval(
             "SELECT 1 FROM pg_database WHERE datname = $1;", db_name
         )
@@ -34,11 +28,29 @@ async def create_database(db_name):
             print(f"Database '{db_name}' does not exist. Creating...")
             await conn.execute(f'CREATE DATABASE "{db_name}";')
             print(f"Database '{db_name}' created successfully.")
-        else:
-            print(f"Database '{db_name}' already exists. Skipping creation.")
+        
+        await conn.close()  # ✅ Close first connection
+
+        # Step 2: Reconnect to 'faceDetect_db' to create tables and stored procedures
+        conn = await asyncpg.connect(
+            user=os.getenv("DB_USER", "postgres"),
+            password=os.getenv("DB_PASSWORD", ""),
+            host=os.getenv("DB_HOST", "localhost"),
+            port=os.getenv("DB_PORT", "5432"),
+            database=db_name  # ✅ Now connecting to 'faceDetect_db'
+        )
+
+        # Execute schema.sql (tables + stored procedures)
+        with open("api/database/schema.sql", "r") as f:
+            schema_sql = f.read()
+        await conn.execute(schema_sql)
+
+        print(f"Schema and stored procedures initialized in '{db_name}'.")
 
     except Exception as e:
-        print(f"Error checking/creating database: {e}")
+        print(f"Error initializing database: {e}")
+
     finally:
-        await conn.close()
+        if conn:
+            await conn.close()  # ✅ Ensure conn is closed
 
