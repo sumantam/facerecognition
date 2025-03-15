@@ -10,8 +10,12 @@ from api.controllers import routers
 
 app = FastAPI()
 
+# ✅ Correctly register each router separately
+for router in routers:
+    app.include_router(router)
+    
 # ✅ Register routers
-app.include_router(routers)
+# app.include_router(routers)
 
 @app.on_event("startup")
 async def startup_event():
