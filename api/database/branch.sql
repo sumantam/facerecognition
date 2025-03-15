@@ -26,11 +26,11 @@ BEGIN
     );
 
     -- Print the command
-    RAISE NOTICE 'Executing: %', add_device_command;
+    RAISE NOTICE 'Executing: %', add_branch_command;
 
     -- Execute the command
     EXECUTE add_branch_command 
-    USING deviceID, branchName, branchCode, deviceSerialNo, deviceModel, deviceIP, location, deviceStatus;
+    USING   branchID, branchName, location, branchAddress, branchMedium;
 END;
 $$;
 
