@@ -6,12 +6,12 @@ from api.create_database import create_database
 from api.execute_proc import execute_procedure
 # Run the async function
 import asyncio
-from api.controllers.employee_controller import router as employee_router  # ✅ Import controller
+from api.controllers import routers
 
 app = FastAPI()
 
 # ✅ Register routers
-app.include_router(employee_router)
+app.include_router(routers)
 
 @app.on_event("startup")
 async def startup_event():
