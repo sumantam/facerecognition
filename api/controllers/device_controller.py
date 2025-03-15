@@ -27,7 +27,7 @@ async def add_device(device: Device):
             device.devicemodel,
             device.deviceip,
             device.location, 
-            device.status
+            device.devicestatus
         )
         return result
     except Exception as e:

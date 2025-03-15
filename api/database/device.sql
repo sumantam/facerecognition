@@ -50,7 +50,7 @@ DECLARE
     create_device_command TEXT;
 BEGIN
     create_device_command := format('
-        CREATE TABLE IF NOT EXISTS %I."Devices" (
+        CREATE TABLE IF NOT EXISTS %I."Device" (
             deviceID INTEGER PRIMARY KEY,
             branchName VARCHAR NOT NULL,
             branchCode INTEGER NOT NULL,
