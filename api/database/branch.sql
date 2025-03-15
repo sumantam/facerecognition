@@ -1,4 +1,39 @@
 DROP PROCEDURE IF EXISTS createBranchTable;
+DROP PROCEDURE IF EXISTS addBranch;
+
+CREATE OR REPLACE PROCEDURE addBranch(
+    branchID INTEGER,
+    branchName VARCHAR,
+    location VARCHAR(255),
+    branchAddress VARCHAR,
+    branchMedium VARCHAR,  
+    schemaName VARCHAR DEFAULT 'public'
+)
+LANGUAGE plpgsql AS $$
+DECLARE
+    add_branch_command TEXT;
+BEGIN
+    add_branch_command := format('
+        INSERT INTO %I."Branch" (
+            branchID,
+            branchName,
+            location,
+            branchAddress,
+            branchMedium
+        )                                                                                                                                      
+        VALUES ($1, $2, $3, $4, $5);                                                                                                                                  
+        ', schemaName
+    );
+
+    -- Print the command
+    RAISE NOTICE 'Executing: %', add_device_command;
+
+    -- Execute the command
+    EXECUTE add_branch_command 
+    USING deviceID, branchName, branchCode, deviceSerialNo, deviceModel, deviceIP, location, deviceStatus;
+END;
+$$;
+
 
 CREATE OR REPLACE PROCEDURE createBranchTable(
     schemaName VARCHAR DEFAULT 'public'
