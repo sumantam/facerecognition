@@ -1,0 +1,11 @@
+@import "rsuite/dist/rsuite.css";
+@import "react-toastify/dist/ReactToastify.css";
+
+.no-margin-grid-container {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+}
