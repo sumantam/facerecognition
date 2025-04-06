@@ -1,0 +1,25 @@
+.custom-filter-container .MuiFormControl-root {
+    margin:auto;
+}
+
+.custom-filter-container .MuiFormControl-root .MuiFormLabel-root {
+   font-weight: bold;
+   font-size: 1rem;
+   color: #fff;
+}
+
+.custom-filter-container .MuiFormControl-root .MuiInputBase-root .MuiSelect-select {
+    color: #fff;
+}
+
+.custom-filter-container .MuiFormControl-root .MuiInputBase-root .MuiSvgIcon-root {
+    color: #fff;
+}
+
+.custom-filter-container .MuiFormControl-root .MuiInputBase-root .MuiOutlinedInput-notchedOutline {
+    border-color: #fff;
+}
+
+.custom-filter-select .MuiSelect-select {
+    padding: 0.75rem 0.75rem;
+}
