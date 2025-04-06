@@ -1,0 +1,343 @@
+{
+	"Plants" : ["Shanghai", "Chennai", "Mumbai"],
+	"Lines" : [
+		{"Id" : "Sh001", "Name" : "Line-1", "Plant" : "Shanghai", "Details_File" : ""},
+		{"Id" : "Sh002", "Name" : "Line-2", "Plant" : "Shanghai", "Details_File" : ""},
+		{"Id" : "Sh003", "Name" : "Line-3", "Plant" : "Shanghai", "Details_File" : ""},
+		{"Id" : "Ch001", "Name" : "Line-1", "Plant" : "Chennai", "Details_File" : ""},
+		{"Id" : "Ch002", "Name" : "Line-2", "Plant" : "Chennai", "Details_File" : ""},
+		{"Id" : "Ch003", "Name" : "Line-3", "Plant" : "Chennai", "Details_File" : ""},
+		{"Id" : "Ch004", "Name" : "Line-4", "Plant" : "Chennai", "Details_File" : ""},
+		{"Id" : "Ch005", "Name" : "Line-5", "Plant" : "Chennai", "Details_File" : ""},
+		{"Id" : "Mu001", "Name" : "Line-1", "Plant" : "Mumbai", "Details_File" : ""},
+		{"Id" : "Mu002", "Name" : "Line-2", "Plant" : "Mumbai", "Details_File" : ""},
+		{"Id" : "Mu003", "Name" : "Line-3", "Plant" : "Mumbai", "Details_File" : ""},
+		{"Id" : "XXXXX", "Name" : "NOLINE", "Plant" : "NOPLANT", "Details_File" : ""}
+		],
+	"Machine_Types" : [
+		{ "Name" : "Loader", "Manufacturers_Cycle_Time" : 0 },
+		{ "Name" : "Marker", "Manufacturers_Cycle_Time" : 6 },
+		{ "Name" : "Paste-Printer", "Manufacturers_Cycle_Time" : 15 },
+		{ "Name" : "Paste-Inspect", "Manufacturers_Cycle_Time" : 10 },
+		{ "Name" : "Pick-and-Place", "Manufacturers_Cycle_Time" : 20 },
+		{ "Name" : "Reflow-AOI", "Manufacturers_Cycle_Time" : 10 },
+		{ "Name" : "Reflow-oven", "Manufacturers_Cycle_Time" : 21 },
+		{ "Name" : "Receiver", "Manufacturers_Cycle_Time" : 0 },
+		{ "Name" : "Paste-Mixer", "Manufacturers_Cycle_Time" : 0 },
+			{}
+		],
+	"Machines_In_Pipeline" : [
+		{"Id" : "Ch003-01", "Line": "Ch003",  "Machine_Type": "Loader",  		"Previous_Machine_Id": "NONE",  "Name" : "Loader", "Preceding_Conveyor_Size" : 0, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch003-02", "Line": "Ch003",  "Machine_Type": "Marker",  		"Previous_Machine_Id": "Ch003-01",  "Name" : "Marker", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 6},
+		{"Id" : "Ch003-03", "Line": "Ch003",  "Machine_Type": "Paste-Printer",  "Previous_Machine_Id": "Ch003-02",  "Name" : "Paste-Printer", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch003-04", "Line": "Ch003",  "Machine_Type": "Paste-Inspect",  "Previous_Machine_Id": "Ch003-03",  "Name" : "Paste-Inspect", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch003-05", "Line": "Ch003",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch003-04",  "Name" : "Pick-Place-A", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 25},
+		{"Id" : "Ch003-06", "Line": "Ch003",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch003-05",  "Name" : "Pick-Place-B", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 20},
+		{"Id" : "Ch003-07", "Line": "Ch003",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch003-06",  "Name" : "Pick-Place-C", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 20},
+		{"Id" : "Ch003-08", "Line": "Ch003",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch003-07",  "Name" : "Pick-Place-D", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 24},
+		{"Id" : "Ch003-09", "Line": "Ch003",  "Machine_Type": "Reflow-AOI",  	"Previous_Machine_Id": "Ch003-08",  "Name" : "Pre-Reflow-AOI", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 10},
+		{"Id" : "Ch003-10", "Line": "Ch003",  "Machine_Type": "Reflow-oven",  	"Previous_Machine_Id": "Ch003-09",  "Name" : "Reflow-oven", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 21},
+		{"Id" : "Ch003-11", "Line": "Ch003",  "Machine_Type": "Reflow-AOI",  	"Previous_Machine_Id": "Ch003-10",  "Name" : "Post-Reflow-AOI", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 20},
+		{"Id" : "Ch003-12", "Line": "Ch003",  "Machine_Type": "Receiver",  		"Previous_Machine_Id": "Ch003-11",  "Name" : "Receiver", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch004-01", "Line": "Ch004",  "Machine_Type": "Loader",  		"Previous_Machine_Id": "NONE",  "Name" : "Loader", "Preceding_Conveyor_Size" : 0, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch004-02", "Line": "Ch004",  "Machine_Type": "Marker",  		"Previous_Machine_Id": "Ch004-01",  "Name" : "Marker", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 6},
+		{"Id" : "Ch004-03", "Line": "Ch004",  "Machine_Type": "Paste-Printer",  "Previous_Machine_Id": "Ch004-02",  "Name" : "Paste-Printer", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch004-04", "Line": "Ch004",  "Machine_Type": "Paste-Inspect",  "Previous_Machine_Id": "Ch004-03",  "Name" : "Paste-Inspect", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Ch004-05", "Line": "Ch004",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch004-04",  "Name" : "Pick-Place-A", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 25},
+		{"Id" : "Ch004-06", "Line": "Ch004",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch004-05",  "Name" : "Pick-Place-B", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 20},
+		{"Id" : "Ch004-07", "Line": "Ch004",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch004-06",  "Name" : "Pick-Place-C", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 20},
+		{"Id" : "Ch004-08", "Line": "Ch004",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Ch004-07",  "Name" : "Pick-Place-D", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 24},
+		{"Id" : "Ch004-09", "Line": "Ch004",  "Machine_Type": "Reflow-AOI",  	"Previous_Machine_Id": "Ch004-08",  "Name" : "Pre-Reflow-AOI", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 10},
+		{"Id" : "Ch004-10", "Line": "Ch004",  "Machine_Type": "Reflow-oven",  	"Previous_Machine_Id": "Ch004-09",  "Name" : "Reflow-oven", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 21},
+		{"Id" : "Ch004-11", "Line": "Ch004",  "Machine_Type": "Reflow-AOI",  	"Previous_Machine_Id": "Ch004-10",  "Name" : "Post-Reflow-AOI", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 20},
+		{"Id" : "Ch004-12", "Line": "Ch004",  "Machine_Type": "Receiver",  		"Previous_Machine_Id": "Ch004-11",  "Name" : "Receiver", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Sh002-01", "Line": "Sh002",  "Machine_Type": "Loader",  		"Previous_Machine_Id": "NONE",  "Name" : "Loader", "Preceding_Conveyor_Size" : 0, "Expected_Cycle_Time" : 0},
+		{"Id" : "Sh002-02", "Line": "Sh002",  "Machine_Type": "Marker",  		"Previous_Machine_Id": "Sh002-01",  "Name" : "Marker", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 6},
+		{"Id" : "Sh002-03", "Line": "Sh002",  "Machine_Type": "Paste-Printer",  "Previous_Machine_Id": "Sh002-02",  "Name" : "Paste-Printer", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Sh002-04", "Line": "Sh002",  "Machine_Type": "Paste-Inspect",  "Previous_Machine_Id": "Sh002-03",  "Name" : "Paste-Inspect", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "Sh002-05", "Line": "Sh002",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Sh002-04",  "Name" : "Pick-Place-A", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 25},
+		{"Id" : "Sh002-06", "Line": "Sh002",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Sh002-05",  "Name" : "Pick-Place-B", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 20},
+		{"Id" : "Sh002-07", "Line": "Sh002",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Sh002-06",  "Name" : "Pick-Place-C", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 20},
+		{"Id" : "Sh002-08", "Line": "Sh002",  "Machine_Type": "Pick-and-Place", "Previous_Machine_Id": "Sh002-07",  "Name" : "Pick-Place-D", "Preceding_Conveyor_Size" : 2, "Expected_Cycle_Time" : 24},
+		{"Id" : "Sh002-09", "Line": "Sh002",  "Machine_Type": "Reflow-AOI",  	"Previous_Machine_Id": "Sh002-08",  "Name" : "Pre-Reflow-AOI", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 10},
+		{"Id" : "Sh002-10", "Line": "Sh002",  "Machine_Type": "Reflow-oven",  	"Previous_Machine_Id": "Sh002-09",  "Name" : "Reflow-oven", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 21},
+		{"Id" : "Sh002-11", "Line": "Sh002",  "Machine_Type": "Reflow-AOI",  	"Previous_Machine_Id": "Sh002-10",  "Name" : "Post-Reflow-AOI", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 20},
+		{"Id" : "Sh002-12", "Line": "Sh002",  "Machine_Type": "Receiver",  		"Previous_Machine_Id": "Sh002-11",  "Name" : "Receiver", "Preceding_Conveyor_Size" : 3, "Expected_Cycle_Time" : 0},
+		{"Id" : "XXXXXXXX", "Line": "XXXXX",  "Machine_Type": "Unknown", "Previous_Machine_Id": "NONE",  "Name" : "Non-existent", "Preceding_Conveyor_Size" : 0, "Expected_Cycle_Time" : 0},
+			{}
+		],
+	"Line_Shift_Times" : [
+		{"id" : "S00001", "Shift_Name" : "Ch003-2004-07-12-A", "Start" : "2004-07-12T060000", "End" : "2004-07-12T140000", "Shift_Owner" : "Arindam", 	"Line": "Ch003", "UTC_Offset" : "+0530"},
+		{"id" : "S00002", "Shift_Name" : "Ch003-2004-07-12-B", "Start" : "2004-07-12T014000", "End" : "2004-07-12T220000", "Shift_Owner" : "Probal", 	"Line": "Ch003", "UTC_Offset" : "+0530"},
+		{"id" : "S00003", "Shift_Name" : "Ch003-2004-07-12-C", "Start" : "2004-07-12T220000", "End" : "2004-08-13T060000", "Shift_Owner" : "Sumanta", 	"Line": "Ch003", "UTC_Offset" : "+0530"},
+		{"id" : "S00004", "Shift_Name" : "Ch003-2004-08-13-A", "Start" : "2004-08-13T060000", "End" : "2004-08-13T140000", "Shift_Owner" : "Arindam", 	"Line": "Ch003", "UTC_Offset" : "+0530"},
+		{"id" : "S00005", "Shift_Name" : "Ch003-2004-08-13-B", "Start" : "2004-08-13T014000", "End" : "2004-08-13T220000", "Shift_Owner" : "Probal", 	"Line": "Ch003", "UTC_Offset" : "+0530"},
+		{"id" : "S00006", "Shift_Name" : "Ch003-2004-08-13-C", "Start" : "2004-07-13T220000", "End" : "2004-09-134060000", "Shift_Owner" : "Sumanta", 	"Line": "Ch003", "UTC_Offset" : "+0530"},
+		{"id" : "S00007", "Shift_Name" : "Ch004-2004-07-12-A", "Start" : "2004-07-12T060000", "End" : "2004-07-12T140000", "Shift_Owner" : "Arindam", 	"Line": "Ch004", "UTC_Offset" : "+0530"},
+		{"id" : "S00008", "Shift_Name" : "Ch004-2004-07-12-B", "Start" : "2004-07-12T014000", "End" : "2004-07-12T220000", "Shift_Owner" : "Probal", 	"Line": "Ch004", "UTC_Offset" : "+0530"},
+		{"id" : "S00009", "Shift_Name" : "Ch004-2004-07-12-C", "Start" : "2004-07-12T220000", "End" : "2004-08-13T060000", "Shift_Owner" : "Sumanta", 	"Line": "Ch004", "UTC_Offset" : "+0530"},
+		{"id" : "S00010", "Shift_Name" : "Ch004-2004-08-13-A", "Start" : "2004-07-13T060000", "End" : "2004-08-13T140000", "Shift_Owner" : "Arindam", 	"Line": "Ch004", "UTC_Offset" : "+0530"},
+		{"id" : "S00011", "Shift_Name" : "Ch004-2004-08-13-B", "Start" : "2004-07-13T014000", "End" : "2004-08-13T220000", "Shift_Owner" : "Probal", 	"Line": "Ch004", "UTC_Offset" : "+0530"},
+		{"id" : "S00012", "Shift_Name" : "Ch004-2004-08-13-C", "Start" : "2004-07-13T220000", "End" : "2004-09-134060000", "Shift_Owner" : "Sumanta", 	"Line": "Ch004", "UTC_Offset" : "+0530"},
+		{"id" : "S00013", "Shift_Name" : "Sh002-2004-07-12-A", "Start" : "2004-07-12T060000", "End" : "2004-07-12T140000", "Shift_Owner" : "Debopam", 	"Line": "Sh002", "UTC_Offset" : "+0800"},
+		{"id" : "S00014", "Shift_Name" : "Sh002-2004-07-12-B", "Start" : "2004-07-12T014000", "End" : "2004-07-12T220000", "Shift_Owner" : "Bibartak",   "Line": "Sh002", "UTC_Offset" : "+0800"},
+		{"id" : "S00015", "Shift_Name" : "Sh002-2004-07-12-C", "Start" : "2004-07-12T220000", "End" : "2004-08-13T060000", "Shift_Owner" : "Swarna", 	"Line": "Sh002", "UTC_Offset" : "+0800"},
+		{"id" : "S00016", "Shift_Name" : "Sh002-2004-08-13-A", "Start" : "2004-07-13T060000", "End" : "2004-08-13T140000", "Shift_Owner" : "Debopam", 	"Line": "Sh002", "UTC_Offset" : "+0800"},
+		{"id" : "S00018", "Shift_Name" : "Sh002-2004-08-13-B", "Start" : "2004-07-13T014000", "End" : "2004-08-13T220000", "Shift_Owner" : "Bibartak",   "Line": "Sh002", "UTC_Offset" : "+0800"},
+		{"id" : "S00019", "Shift_Name" : "Sh002-2004-08-13-C", "Start" : "2004-07-13T220000", "End" : "2004-09-134060000", "Shift_Owner" : "Swarna", 	"Line": "Sh002", "UTC_Offset" : "+0800"},
+			{}
+	],
+	"Line_Shift_Plans" : [ 
+		{ "Plan_Id": "Plan_S00001_P01", "Shift_Id" : "S00001", "Start_Time" : "2004-07-12T060000", "Changeover_Time_After" : 1200, "Other_Times" : 0, "To_Produce" : 250, "Model_Name" : "L1-SWITCH-BANK_0"},
+		{ "Plan_Id": "Plan_S00001_P02", "Shift_Id" : "S00001", "Start_Time" : "2004-07-12T094500", "Changeover_Time_After" : 1000, "Other_Times" : 0, "To_Produce" : 390, "Model_Name" : "L2-SWITCH-BANK_0"},
+		{ "Plan_Id": "Plan_S00002_P01", "Shift_Id" : "S00002", "Start_Time" : "2004-07-12T140000", "Changeover_Time_After" : 1500, "Other_Times" : 0, "To_Produce" : 240, "Model_Name" : "TATA-MAIN_0"},
+		{ "Plan_Id": "Plan_S00002_P02", "Shift_Id" : "S00002", "Start_Time" : "2004-07-12T175000", "Changeover_Time_After" : 1200, "Other_Times" : 0, "To_Produce" : 750, "Model_Name" : "L2-MAIN_0"},
+		{ "Plan_Id": "Plan_S00003_P01", "Shift_Id" : "S00003", "Start_Time" : "2004-07-12T220000", "Changeover_Time_After" : 1600, "Other_Times" : 0, "To_Produce" : 340, "Model_Name" : "TATA-MAIN_1"},
+		{ "Plan_Id": "Plan_S00003_P02", "Shift_Id" : "S00003", "Start_Time" : "2004-08-12T025000", "Changeover_Time_After" : 1200, "Other_Times" : 0, "To_Produce" : 750, "Model_Name" : "L2-MAIN_1"},
+		{ "Plan_Id": "Plan_S00003_P03", "Shift_Id" : "S00003", "Start_Time" : "2004-08-12T041500", "Changeover_Time_After" : 1200, "Other_Times" : 0, "To_Produce" : 250, "Model_Name" : "L2-MAIN_2"},
+			{}
+	],
+	"Downtime_Reasons" : [
+		{ "Reason_Id" : "DTR_0000", "Class" : "Microstop",  "Root_Cause" : "General", "Context" : "" },
+		{ "Reason_Id" : "DTR_0001", "Class" : "Changeover", "Root_Cause" : "", "Context" : "" },
+		{ "Reason_Id" : "DTR_0101", "Class" : "Breakdown", "Root_Cause" : "Component Misalignment", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0101-01", "Desc" : "Calibration Checked"}, {"AId" : "DTRA_0101-02", "Desc" : "Vision System Verified"}, {"AId" : "DTRA_0101-03", "Desc" : "Programming Reviewed"}]
+		},
+		{ "Reason_Id" : "DTR_0102", "Class" : "Breakdown", "Root_Cause" : "Vacuum Loss", "Context" : "Pick-and-Place", 
+			"Actions" : [ {"AId" : "DTRA_0102-01", "Desc" : "Vacuum Seal Checked"}, {"AId" : "DTRA_0102-02", "Desc" : "Gripper Cleaned"}]
+		},
+		{ "Reason_Id" : "DTR_0103", "Class" : "Breakdown", "Root_Cause" : "Feeder Problems", "Context" : "Pick-and-Place", 
+			"Actions" : [ {"AId" : "DTRA_0103-01", "Desc" : "Alignment Checked"}, {"AId" : "DTRA_0103-02", "Desc" : "Cleaning done"}]
+		},		
+		{ "Reason_Id" : "DTR_0104", "Class" : "Breakdown", "Root_Cause" : "Nozzle Issues", "Context" : "Pick-and-Place", 
+			"Actions" : [ {"AId" : "DTRA_0104-01", "Desc" : "Nozzle Inspected and cleaned"}, {"AId" : "DTRA_0104-02", "Desc" : "Right Vaccum level ensured"},{"AId" : "DTRA_0104-03", "Desc" : "Nozzle Replaced"}]
+		},		
+		{ "Reason_Id" : "DTR_0105", "Class" : "Breakdown", "Root_Cause" : "Software Errors", "Context" : "Pick-and-Place", 
+			"Actions" : [ {"AId" : "DTRA_0105-01", "Desc" : "Software Glitches Detected"}, {"AId" : "DTRA_0105-02", "Desc" : "Right Software Installed"},{"AId" : "DTRA_0105-03", "Desc" : " System Test done"}]
+		},		
+		{ "Reason_Id" : "DTR_0106", "Class" : "Breakdown", "Root_Cause" : "End-Effector Issues", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0106-01", "Desc" : "Vaccum Gripper issue fixed"}, {"AId" : "DTRA_0106-02", "Desc" : "Magnetic Gripper issue fixed"},{"AId" : "DTRA_0106-03", "Desc" : " Pneumatic Gripper issue fixed"}]
+		},
+		{ "Reason_Id" : "DTR_0107", "Class" : "Breakdown", "Root_Cause" : "Component misalignment", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0107-01", "Desc" : "Machine Calibration done"}, {"AId" : "DTRA_0107-02", "Desc" : "Feeder movement checked and alignment done"}]
+		},
+		{ "Reason_Id" : "DTR_0108", "Class" : "Breakdown", "Root_Cause" : "Component picking issues", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0108-01", "Desc" : "Machine Alignment Checked"}, {"AId" : "DTRA_0108-02", "Desc" : "Ensure no missing component"},{"AId" : "DTRA_0108-03", "Desc" : " ensure no overturn of components"}]
+		},
+		{ "Reason_Id" : "DTR_0109", "Class" : "Breakdown", "Root_Cause" : "Machine Speed and Accuracy", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0196-01", "Desc" : "Machine Speed and Accuracy Adjusted"}, {"AId" : "DTRA_0109-02", "Desc" : "Right quality of components Checked"}]
+		},
+		{ "Reason_Id" : "DTR_0110", "Class" : "Breakdown", "Root_Cause" : "Feeder issues", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0110-01", "Desc" : "Feeder Jam Removed"}, {"AId" : "DTRA_0110-02", "Desc" : "Feeder Speed Adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0111", "Class" : "Breakdown", "Root_Cause" : "Software glitches", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_011-01", "Desc" : "Software bug logged and fixed"}, {"AId" : "DTRA_011-02", "Desc" : " Test run done with updated software"}]
+		},
+		{ "Reason_Id" : "DTR_0112", "Class" : "Breakdown", "Root_Cause" : "Machine vision problems", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0112-01", "Desc" : "Line of vision cleaned"}, {"AId" : "DTRA_0112-02", "Desc" : "Shiny object or cases of occlusion removed"},{"AId" : "DTRA_0112-03", "Desc" : " Real time feedback loop to pickup robot checked"}]
+		},
+		{ "Reason_Id" : "DTR_0113", "Class" : "Breakdown", "Root_Cause" : "Nozzle blockages", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0113-01", "Desc" : "Proper level of vaccum maintained"}, {"AId" : "DTRA_0113-02", "Desc" : " Nozzle cleaned"},{"AId" : "DTRA_0113-03", "Desc" : "Periodic nozzle cleaning schedule introduced"}]
+		},
+		{ "Reason_Id" : "DTR_0114", "Class" : "Breakdown", "Root_Cause" : "Machine misalignment", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0114-01", "Desc" : "machine Alignment Done"}, {"AId" : "DTRA_0114-02", "Desc" : "Machine Calibration Done"}]
+		},
+		{ "Reason_Id" : "DTR_0115", "Class" : "Breakdown", "Root_Cause" : "Pneumatic issues", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0115-01", "Desc" : "Pneumatic Cylinder Operation checked"}, {"AId" : "DTRA_0115-02", "Desc" : "Faulty Pneumatic Cylinder Changed"},{"AId" : "DTRA_0113-03", "Desc" : "Pneumatic Cylinder Cleaned and Lubricated"}]
+		},
+		{ "Reason_Id" : "DTR_0116", "Class" : "Breakdown", "Root_Cause" : "Component contamination", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0116-01", "Desc" : "Solder Paste Printing Machine output checked"}, {"AId" : "DTRA_0116-02", "Desc" : " Machine Alignment Rechecked"},{"AId" : "DTRA_0116-03", "Desc" : "Nozzle Cleaned"}]
+		},
+		{ "Reason_Id" : "DTR_0117", "Class" : "Breakdown", "Root_Cause" : "Component damage", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0117-01", "Desc" : "Machine Alignment checked"}, {"AId" : "DTRA_0117-02", "Desc" : "Pickup and placement actions checked "},{"AId" : "DTRA_0117-03", "Desc" : "Vaccum level maintained"}]
+		},
+		{ "Reason_Id" : "DTR_0118", "Class" : "Breakdown", "Root_Cause" : "Machine speed variations", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0118-01", "Desc" : "Machine Speed adjusted"}, {"AId" : "DTRA_0118-02", "Desc" : " Machine Feedback Loop Checked"},{"AId" : "DTRA_0118-03", "Desc" : "Machine re-calibrated"}]
+		},
+		{ "Reason_Id" : "DTR_0119", "Class" : "Breakdown", "Root_Cause" : "Component verification errors", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_011-0119-01", "Desc" : "Feeder Alignment Checked"}, {"AId" : "DTRA_0119-02", "Desc" : " Component Dimension Checked"},{"AId" : "DTRA_0119-03", "Desc" : "Set proper distance between the components"}]
+		},
+		{ "Reason_Id" : "DTR_0120", "Class" : "Breakdown", "Root_Cause" : "Machine calibration drift", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0120-01", "Desc" : "Machine re-calibrated"}, {"AId" : "DTRA_0120-02", "Desc" : "Peridic Machine Calibration schedule introduced"}]
+		},
+		{ "Reason_Id" : "DTR_0121", "Class" : "Breakdown", "Root_Cause" : "Inadequate training", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0121-01", "Desc" : "Training arranged"}, {"AId" : "DTRA_0121-02", "Desc" : "On the Job Assessment and Training Introduced"}]
+		},
+		{ "Reason_Id" : "DTR_0122", "Class" : "Breakdown", "Root_Cause" : "Inconsistent component supply", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0122-01", "Desc" : "Proper quality components"}, {"AId" : "DTRA_0113-02", "Desc" : " Nozzle cleaned"},{"AId" : "DTRA_0113-03", "Desc" : "Periodic nozzle cleaning schedule introduced"}]
+		},
+		{ "Reason_Id" : "DTR_0123", "Class" : "Breakdown", "Root_Cause" : "PCB warpage", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0123-01", "Desc" : "PCB surfaces measured with measurement software"}, {"AId" : "DTRA_0123-02", "Desc" : "Simulate levelling based on measurement and applied "},{"AId" : "DTRA_0123-03", "Desc" : "Discard PCBs if beyond tolerance limits"}]
+		},
+		{ "Reason_Id" : "DTR_0124", "Class" : "Breakdown", "Root_Cause" : "Inadequate preventive maintenance", "Context" : "Pick-and-Place",
+			"Actions" : [ {"AId" : "DTRA_0124-01", "Desc" : "previous maintenance records checked"}, {"AId" : "DTRA_0124-02", "Desc" : " Preventive maintenance schedule frequency modified"}]
+		},
+		{ "Reason_Id" : "DTR_0125", "Class" : "Breakdown", "Root_Cause" : "Conveyor Speed Malfunction", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0125-01", "Desc" : "Conveyor Speed Calibrated "}, {"AId" : "DTRA_0125-02", "Desc" : "Conveyor speed adjusted"},{"AId" : "DTRA_0125-03", "Desc" : "Defective conveyor changed"}]
+		},
+		{ "Reason_Id" : "DTR_0126", "Class" : "Breakdown", "Root_Cause" : "Oven Thermocouples Issues", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0126-01", "Desc" : "Identified Thermocouple measurement calibrated"}, {"AId" : "DTRA_0126-02", "Desc" : "Defective Thermocouple changed"}]
+		},
+		{ "Reason_Id" : "DTR_0127", "Class" : "Breakdown", "Root_Cause" : "Water cooling not effective", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0127-01", "Desc" : "Water inlet temperature checked "}, {"AId" : "DTRA_0127-02", "Desc" : "Water cooling set point adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0128", "Class" : "Breakdown", "Root_Cause" : "High Water Temperature alarm", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0128-01", "Desc" : "Water flow rate checked"}, {"AId" : "DTRA_0128-02", "Desc" : "Water flow rate adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0129", "Class" : "Breakdown", "Root_Cause" : "Improper Heating", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0129-01", "Desc" : "Blower motor speed checked and adjusted "}, {"AId" : "DTRA_0129-02", "Desc" : " Heater function checked and voltage adjusted"},{"AId" : "DTRA_0129-03", "Desc" : " Heat sensors calibrated"}]
+		},
+		{ "Reason_Id" : "DTR_0130", "Class" : "Breakdown", "Root_Cause" : "Flux Build-up", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0130-01", "Desc" : "Build up Flux removed "}, {"AId" : "DTRA_0130-02", "Desc" : "Reflow profile adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0131", "Class" : "Breakdown", "Root_Cause" : "Overshooting Target Temperatures", "Context" : "Reflow-oven",
+			"Actions" : [ {"AId" : "DTRA_0131-01", "Desc" : "Oven cleaned periodically"}, {"AId" : "DTRA_0131-02", "Desc" : "Oven profile recalibrated"},{"AId" : "DTRA_0131-03", "Desc" : "Conveyor speed adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0131", "Class" : "Breakdown", "Root_Cause" : "Port Selection Issues", "Context" : "Docking Station",
+			"Actions" : [ {"AId" : "DTRA_0132-01", "Desc" : "Dock port configuration checked"}, {"AId" : "DTRA_0131-02", "Desc" : "Docking arrangement changed as required"}]
+		},
+		{ "Reason_Id" : "DTR_0132", "Class" : "Breakdown", "Root_Cause" : "Connectivity Issues", "Context" : "Docking Station",
+			"Actions" : [ {"AId" : "DTRA_0132-01", "Desc" : "Dock port configuration checked "}, {"AId" : "DTRA_0125-02", "Desc" : "USB type checked for compatibility with connected device"}]
+		},
+		{ "Reason_Id" : "DTR_0133", "Class" : "Breakdown", "Root_Cause" : "Power Delivery Issues", "Context" : "Docking Station",
+			"Actions" : [ {"AId" : "DTRA_0133-01", "Desc" : "Power supply requirements checked "}, {"AId" : "DTRA_0133-02", "Desc" : "correct port usage ensured "}]
+		},
+		{ "Reason_Id" : "DTR_0134", "Class" : "Breakdown", "Root_Cause" : "Compatibility Issues", "Context" : "Docking Station",
+			"Actions" : [ {"AId" : "DTRA_0134-01", "Desc" : "Type of operation console laptop is checked "}, {"AId" : "DTRA_0134-02", "Desc" : "Compatibility of ChromeOS is checked "},{"AId" : "DTRA_0134-03", "Desc" : "ChromeOS installed "}]
+		},
+		{ "Reason_Id" : "DTR_0135", "Class" : "Breakdown", "Root_Cause" : "Laser Engraver Not Burning", "Context" : "Laser Marker machine",
+			"Actions" : [ {"AId" : "DTRA_0135-01", "Desc" : "Current and voltage level to Laser unit checked"}, {"AId" : "DTRA_0135-02", "Desc" : "Power unit tested and refixed"},{"AId" : "DTRA_0135-03", "Desc" : "Power unit changed"}]
+		},
+		{ "Reason_Id" : "DTR_0136", "Class" : "Breakdown", "Root_Cause" : "Decreased Laser and Laser Marking not Clear Enough", "Context" : "Laser Marker machine",
+			"Actions" : [ {"AId" : "DTRA_0136-01", "Desc" : "Focal position adjusted"}, {"AId" : "DTRA_0136-02", "Desc" : "Power, Speed, Frequence adjusted"},{"AId" : "DTRA_0136-03", "Desc" : "Mirrors and lenses cleaned and properly aligned"},{"AId" : "DTRA_0136-04", "Desc" : "Power supply changed"},{"AId" : "DTRA_0136-05", "Desc" : "Damaged parts changed"}]
+		},
+		{ "Reason_Id" : "DTR_0137", "Class" : "Breakdown", "Root_Cause" : "Engraving Dislocation", "Context" : "Laser Marker machine",
+			"Actions" : [ {"AId" : "DTRA_0137-01", "Desc" : "Centre of marking measures and Focal position adjusted"}, {"AId" : "DTRA_0137-02", "Desc" : "Damaged Laser Head changed "},{"AId" : "DTRA_0137-03", "Desc" : "Laser beam to surface perpendicularity checked"},{"AId" : "DTRA_0137-04", "Desc" : "Mirrors and Lenses cleaned"},{"AId" : "DTRA_0137-05", "Desc" : "All screws tightened"}]
+		},
+		{ "Reason_Id" : "DTR_0138", "Class" : "Breakdown", "Root_Cause" : "Laser is too Hot or Not Hot Enough", "Context" : "Laser Marker machine",
+			"Actions" : [ {"AId" : "DTRA_0138-01", "Desc" : "Power setting Adjusted"}, {"AId" : "DTRA_0138-02", "Desc" : "Cooling system checked and setting adjusted"},{"AId" : "DTRA_0138-03", "Desc" : "Move and adjust the beam towards a different direction"}]
+		},
+		{ "Reason_Id" : "DTR_0139", "Class" : "Breakdown", "Root_Cause" : "AOI Not Identifying Issues and Defects", "Context" : "Reflow-AOI",
+			"Actions" : [ {"AId" : "DTRA_0139-01", "Desc" : "Program checked and updated"}, {"AId" : "DTRA_0139-02", "Desc" : "3D/2D camera system checked and recalibrated"},{"AId" : "DTRA_0139-03", "Desc" : "Camera cleaning, lighting level, board placement and alignment checked and ensured "}]
+		},
+		{ "Reason_Id" : "DTR_0140", "Class" : "Breakdown", "Root_Cause" : "Decreased AOI Efficiency and Clarity", "Context" : "Reflow-AOI",
+	    "Actions" : [ {"AId" : "DTRA_0140-01", "Desc" : "Program updated regularly"}, {"AId" : "DTRA_0140-02", "Desc" : "Controlled operating environment maintained"},{"AId" : "DTRA_0140-03", "Desc" : "Components checked and re-calibration done "}]
+		},
+		{ "Reason_Id" : "DTR_0141", "Class" : "Breakdown", "Root_Cause" : "Mechanical Issues", "Context" : "Loader",
+		 "Actions" : [ {"AId" : "DTRA_0141-01", "Desc" : "Machine parts checked, all screw tightened and lubrication done"}, {"AId" : "DTRA_0141-02", "Desc" : "Defective parts identified and changed; Re-order request placed"},{"AId" : "DTRA_0141-03", "Desc" : "Machine alignment done"}]
+		},
+		{ "Reason_Id" : "DTR_0142", "Class" : "Breakdown", "Root_Cause" : "Software Issues", "Context" : "Loader",
+		 "Actions" : [ {"AId" : "DTRA_0142-01", "Desc" : "Program bug detected and fixed"}, {"AId" : "DTRA_0142-02", "Desc" : "system updated with proper version of software"}]
+		},
+		{ "Reason_Id" : "DTR_0143", "Class" : "Breakdown", "Root_Cause" : "Electrical Issues", "Context" : "Loader",
+		 "Actions" : [ {"AId" : "DTRA_0143-01", "Desc" : "Loose connection or faulty wiring checked and fixed"}, {"AId" : "DTRA_0143-02", "Desc" : "Proper Power supply ensured"},{"AId" : "DTRA_0140-03", "Desc" : "Defective electrical or electronics board replaced; Re-ordering done"}]
+		},
+		{ "Reason_Id" : "DTR_0144", "Class" : "Breakdown", "Root_Cause" : "Component Handling Issues", "Context" : "Loader",
+		 "Actions" : [ {"AId" : "DTRA_0144-01", "Desc" : "Components checked and ensure proper sizes"}, {"AId" : "DTRA_0144-02", "Desc" : "Loader recalibrated"},{"AId" : "DTRA_0144-03", "Desc" : "Loader setting checked and set according to component size "}]
+		},
+		{ "Reason_Id" : "DTR_0145", "Class" : "Breakdown", "Root_Cause" : "Insufficient Solder Paste", "Context" : "Solder Paste-Printer",
+		 "Actions" : [ {"AId" : "DTRA_0145-01", "Desc" : "Printing pressure checked and adjusted"}, {"AId" : "DTRA_0145-02", "Desc" : "Stencil filled with Solder paste "},{"AId" : "DTRA_0145-03", "Desc" : "Stencil condition checked and clogging removed"}]
+		},
+		{ "Reason_Id" : "DTR_0146", "Class" : "Breakdown", "Root_Cause" : "Smearing of Solder Paste", "Context" : "Solder Paste-Printer",
+			"Actions" : [ {"AId" : "DTRA_0146-01", "Desc" : "Squeegee speed and pressure reduced"}, {"AId" : "DTRA_0146-02", "Desc" : ",Proper stencil release ensured"},{"AId" : "DTRA_0146-03", "Desc" : ", Solder paste release volume adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0147", "Class" : "Breakdown", "Root_Cause" : "Stencil Misalignment", "Context" : "Solder Paste-Printer",
+			"Actions" : [ {"AId" : "DTRA_0147-01", "Desc" : "Proper alignment of the PCB and stencil ensured"}, {"AId" : "DTRA_0147-02", "Desc" : ",Calibration done"}]
+		},
+		{ "Reason_Id" : "DTR_0148", "Class" : "Breakdown", "Root_Cause" : "Stencil Aperture Issues", "Context" : "Solder Paste-Printer",
+			"Actions" : [ {"AId" : "DTRA_0148-01", "Desc" : "Stencil Replaced"}, {"AId" : "DTRA_0148-02", "Desc" : "Distance between Stencil Aperature and initial printing location adjusted"}]
+		},
+		{ "Reason_Id" : "DTR_0149", "Class" : "Breakdown", "Root_Cause" : "Timing Issues", "Context" : "Solder Paste-Inspect",
+			"Actions" : [ {"AId" : "DTRA_0149-01", "Desc" : "setup time adjusted such that data is stable and latched correctly"}]
+		},
+		{ "Reason_Id" : "DTR_0150", "Class" : "Breakdown", "Root_Cause" : "Voltage Level Issues", "Context" : "Solder Paste-Inspect",
+			"Actions" : [ {"AId" : "DTRA_0150-01", "Desc" : "Input and Output voltage checked if maintained within range "}, {"AId" : "DTRA_0150-02", "Desc" : "Power unit and connectors changed if found faulty or misbehaving"}]
+		},
+		{ "Reason_Id" : "DTR_0151", "Class" : "Breakdown", "Root_Cause" : "Communication Issues", "Context" : "Solder Paste-Inspect",
+			"Actions" : [ {"AId" : "DTRA_0151-01", "Desc" : "Communication interfaces checked verified. "}, {"AId" : "DTRA_0151-02", "Desc" : "Proper integration and data exchange protocols between SPI machines and other SMT equipment checked and verified"}]
+		},
+		{ "Reason_Id" : "DTR_0152", "Class" : "Breakdown", "Root_Cause" : "Peripheral Select Issues", "Context" : "Solder Paste-Inspect",
+			"Actions" : [ {"AId" : "DTRA_0152-01", "Desc" : "Controller to Peropheral data transmission checked and ensured right selection of peripherals "}]
+		},
+		{ "Reason_Id" : "DTR_0153", "Class" : "Breakdown", "Root_Cause" : "Overmixing or High Shear Conditions", "Context" : "Solder Paste-Mixer",
+			"Actions" : [ {"AId" : "DTRA_0153-01", "Desc" : "Solder paste’s viscosity and thixotropy checked and mixing adjusted"}, {"AId" : "DTRA_0153-02", "Desc" : "Solder paste changed if found not proper"}]
+		},
+		{ "Reason_Id" : "DTR_0154", "Class" : "Breakdown", "Root_Cause" : "Physical Stress", "Context" : "Solder Paste-Mixer",
+			"Actions" : [ {"AId" : "DTRA_0154-01", "Desc" : "Machine vibration level checked and cause of vibration eleminated"}, {"AId" : "DTRA_0154-02", "Desc" : "Feeders and conveyors checked for any vibration or sharp jerking and problems rectified"}]
+		},
+		{ "Reason_Id" : "DTR_0155", "Class" : "Breakdown", "Root_Cause" : "Improper Mixing", "Context" : " Solder Paste-Mixer",		
+			"Actions" : [ {"AId" : "DTRA_0155-01", "Desc" : "Machine operation checked as per manual and setting and modify set points as needed"}, {"AId" : "DTRA_0155-02", "Desc" : "Axis of rotation is checked and Adjusted as needed to maintain 45 degrees with revolution axis"}]
+		},
+		{ "Reason_Id" : "DTR_0201", "Class" : "Material-shortage", "Root_Cause" : "", "Context" : "ALL" },
+		{ "Reason_Id" : "DTR_0301", "Class" : "Manpower-shortage", "Root_Cause" : "", "Context" : "ALL" },
+		{ "Reason_Id" : "DTR_0401", "Class" : "Software-issues", "Root_Cause" : "", "Context" : "ALL" },
+		{ "Reason_Id" : "DTR_0501", "Class" : "Quality", "Root_Cause" : "", "Context" : "ALL" },
+		{ "Reason_Id" : "DTR_0901", "Class" : "Others", "Root_Cause" : "", "Context" : "ALL" },
+		""
+	],
+	"Downtime_Instances" : [
+		{ "Downtime_Instance_Id" : "DTR_0000_000001", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-01", "From_Time" : "10", "Expected_Up_Time" : "", "To_Time" : "20", "Detailed_Reason" : "Pick Up", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000002", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-02", "From_Time" : "15", "Expected_Up_Time" : "", "To_Time" : "45", "Detailed_Reason" : "Feeder", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000003", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-03", "From_Time" : "11", "Expected_Up_Time" : "", "To_Time" : "50", "Detailed_Reason" : "Other", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000004", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-04", "From_Time" : "23", "Expected_Up_Time" : "", "To_Time" : "37", "Detailed_Reason" : "Empty", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000005", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-05", "From_Time" : "16", "Expected_Up_Time" : "", "To_Time" : "33", "Detailed_Reason" : "Other", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000006", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-06", "From_Time" : "10", "Expected_Up_Time" : "", "To_Time" : "73", "Detailed_Reason" : "Barcode", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000007", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-07", "From_Time" : "2", "Expected_Up_Time" : "", "To_Time" : "15", "Detailed_Reason" : "Vision", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000008", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-08", "From_Time" : "3", "Expected_Up_Time" : "", "To_Time" : "39", "Detailed_Reason" : "Other", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_000009", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-09", "From_Time" : "27", "Expected_Up_Time" : "", "To_Time" : "57", "Detailed_Reason" : "Other", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_0000010", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-10", "From_Time" : "21", "Expected_Up_Time" : "", "To_Time" : "49", "Detailed_Reason" : "Board", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_0000011", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-11", "From_Time" : "21", "Expected_Up_Time" : "", "To_Time" : "49", "Detailed_Reason" : "Barcode", "Note" : "", "GYR" : ""},
+		{ "Downtime_Instance_Id" : "DTR_0000_0000012", "Downtime_Reason_Id" : "DTR_0000", "Machines_In_Pipeline_Id" : "Ch003-12", "From_Time" : "21", "Expected_Up_Time" : "", "To_Time" : "49", "Detailed_Reason" : "Other", "Note" : "", "GYR" : ""}
+	],
+	"Production_Summary" : [
+		{
+			"Line_Id" : "Ch003",
+			"Line_Shift_Plan_Id": "Plan_S00001_P01",
+			"Productions" : [
+				{
+					"Barcode" : "AY6C056",
+					"Runs" : [
+						{
+							"Run_Number" : 0,
+							"Entry_Machine_Id" : "Ch003-01", "Entry_Machine_Timestamp" : "2004-07-12T060210",
+							"Exit_Machine_Id" : "Ch003-12", "Exit_Machine_Timestamp" : "2004-07-12T060253",
+							"Status" : "OK", "Other_Info" : "",
+							"Microstop_Changeover_Instances" : [ 
+								"DTR_0000_000001",
+								"DTR_0000_000002",
+								"DTR_0000_000003"
+							]
+						}				
+					]
+				},
+				{
+					"Barcode" : "AY6C076",
+					"Runs" : [
+						{
+							"Run_Number" : 0,
+							"Entry_Machine_Id" : "Ch003-01", "Entry_Machine_Timestamp" : "2004-07-12T060216",
+							"Exit_Machine_Id" : "Ch003-11", "Exit_Machine_Timestamp" : "2004-07-12T060303",
+							"Status" : "NG", "Other_Info" : "",
+							"Microstop_Changeover_Instances" : [ 
+								"DTR_0000_000001",
+								"DTR_0000_000008", 
+								""
+							]
+						},				
+						{
+							"Run_Number" : 1,
+							"Entry_Machine_Id" : "Ch003-11", "Entry_Machine_Timestamp" : "2004-07-12T060540",
+							"Exit_Machine_Id" : "Ch003-12", "Exit_Machine_Timestamp" : "2004-07-12T060557",
+							"Status" : "OK", "Other_Info" : "",
+							"Microstop_Changeover_Instances" : [ 
+								""
+							]
+						}				
+					]
+				}
+			]		
+		}
+	],
+	"LAST": "NOTHING" 
+}
+
