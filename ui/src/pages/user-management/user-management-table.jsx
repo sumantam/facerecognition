@@ -46,7 +46,7 @@ const UsersTable = () => {
   const dispatch = useDispatch();
   const usersData = useSelector(usersSelector);
   const loggedInUser = useSelector(loggedinUserSelector);
-  const formData = usersData.data;
+  const formData = usersData.data?.users ?? [];
 
   const [searchText, setSearchText] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
