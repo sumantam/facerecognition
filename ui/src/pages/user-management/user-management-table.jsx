@@ -102,6 +102,7 @@ const UsersTable = () => {
     return <div>Loading...</div>;
   }
 
+  console.log("The form data is .........", formData)
   const sortedData = formData
     .filter((item) =>
       item.email.toLowerCase().includes(searchText.toLowerCase())

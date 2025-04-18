@@ -5,6 +5,7 @@ const getLoggedInUserDetails = async (email) => {
 };
 
 const getAllUsers = async () => {
+  console.log('Inside the function getAllUsers ...........')
   return await getWithMainThread(`users/allUsers`);
 };
 

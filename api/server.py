@@ -7,13 +7,24 @@ from api.execute_proc import execute_procedure
 # Run the async function
 import asyncio
 from api.controllers import routers
-# from db import get_db_connection
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# ✅ Allow frontend origin
+origins = [f"http://localhost:{port}" for port in range(3000, 3010)] 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,             # 👈 OR use ["*"] to allow all (not safe for prod)
+    allow_credentials=True,
+    allow_methods=["*"],               # Allow all HTTP methods
+    allow_headers=["*"],               # Allow all headers
+)
+
 # ✅ Correctly register each router separately
 for router in routers:
-    app.include_router(router)
+    app.include_router(router, prefix='/api')
     
 # ✅ Register routers
 # app.include_router(routers)

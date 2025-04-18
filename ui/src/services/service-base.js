@@ -18,7 +18,8 @@ const api = axios.create({
 
 const getWithMainThread = async (uri, queryParams = params) => {
   try {
-    const response = await api.get(`/${uri}`, { headers: headers, params: queryParams });
+    // const response = await api.get(`/${uri}`, { headers: headers, params: queryParams });
+    const response = await api.get(`/${uri}`, { headers: headers});
     return response;
   } catch (error) {
     console.error("Axios error in getWithMainThread:", error);
