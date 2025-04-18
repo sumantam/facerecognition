@@ -5,7 +5,7 @@ from api.services.search_service import search_all_employee_service  # ✅ Impor
 router = APIRouter()
 
 # ✅ Find  all new Users
-@router.get("/allUsers")
+@router.get("/users/allUsers")
 async def all_employee():
     try:
         result = await search_all_employee_service()
