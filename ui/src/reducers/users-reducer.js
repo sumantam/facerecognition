@@ -7,6 +7,7 @@ import userService from "../services/user-service";
 
 export const fetchAllUsers = createAsyncThunk("fetchAllUsers", async () => {
   const users = await userService.getAllUsers();
+  console.log("Users fetched in thunk:", users);
   return users;
 });
 

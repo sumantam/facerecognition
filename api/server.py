@@ -7,6 +7,7 @@ from api.execute_proc import execute_procedure
 # Run the async function
 import asyncio
 from api.controllers import routers
+# from db import get_db_connection
 
 app = FastAPI()
 
@@ -26,15 +27,4 @@ async def startup_event():
 def read_root():
     return {"message": "Hello, World!"}
 
-# ✅ Get All Users
-@app.get("/users")
-async def get_users():
-    conn = await get_db_connection()
-    try:
-        users = await conn.fetch("SELECT * FROM users;")
-        return [dict(user) for user in users]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    finally:
-        await conn.close()
 

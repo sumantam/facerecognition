@@ -29,9 +29,10 @@ const App = () => {
       <Suspense fallback={<></>}>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path='/usermgmt' element={<UserManagement />} />
+        
           {/* <Route path='/oee' element={<RequireAuth><Layout /></RequireAuth>}>
             <Route path="" element={<Navigate to="dashboard" />} />
-            <Route path='usermgmt' element={<UserManagement />} />
             <Route path="userForm" element={<UserForm />} />
             <Route path='systemdefinition' element={<SystemDefinition />} />
           </Route> */}
