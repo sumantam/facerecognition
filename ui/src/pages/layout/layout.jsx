@@ -110,7 +110,8 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
     const [startDateTime, setStartDateTime] = useState(new Date(current_date.getFullYear() - 1, current_date.getMonth(), current_date.getDate(), 0, 0, 0));
     const [selectedEquipmentType, setSelectedEquipmentType] = useState('');
     const [selectedEquipment, setSelectedEquipment] = useState('');
-    const [equipmentData, setEquipmentData] = useState(equipments);
+    // const [equipmentData, setEquipmentData] = useState(equipments);
+    const [equipmentData, setEquipmentData] = useState(equipments || []);
     const [selectedEqpId, setSelectedEqpId] = useState('');
     const [filteredEquipments, setFilteredEquipments] = useState([]);
     const avatarRef = useRef(null);
@@ -219,7 +220,7 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                 <Divider />
                 <List>
                     <ListItem key={1} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }} onClick={() => navigate('usermgmt')}>
+                        <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }} onClick={() => navigate("/usermgmt")}>
                             <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
                                 <Person />
                             </ListItemIcon>

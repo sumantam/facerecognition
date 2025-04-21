@@ -29,8 +29,15 @@ const App = () => {
       <Suspense fallback={<></>}>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path='/usermgmt' element={<UserManagement />} />
-        
+          {/* <Route path='/usermgmt' element={<UserManagement />} /> */}
+          {/* <Route path="/usermgmt" element={<Layout />}>
+            <Route index element={<UserManagement />} />
+          </Route> */}
+
+          <Route path="/" element={<Layout equipments={[]} />}>
+            <Route path="usermgmt" element={<UserManagement />} />
+            {/* Add more child routes here if needed */}
+          </Route>
           {/* <Route path='/oee' element={<RequireAuth><Layout /></RequireAuth>}>
             <Route path="" element={<Navigate to="dashboard" />} />
             <Route path="userForm" element={<UserForm />} />
