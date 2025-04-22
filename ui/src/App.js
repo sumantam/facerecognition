@@ -34,7 +34,7 @@ const App = () => {
             <Route index element={<UserManagement />} />
           </Route> */}
 
-          <Route path="/" element={<Layout equipments={[]} />}>
+          <Route path="/oee" element={<Layout equipments={[]} />}>
             <Route path="usermgmt" element={<UserManagement />} />
             {/* Add more child routes here if needed */}
           </Route>
@@ -45,6 +45,8 @@ const App = () => {
           </Route> */}
           {/* <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='*' element={<NoMatch />} /> */}
+          {/* 404 catch-all */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </Router>

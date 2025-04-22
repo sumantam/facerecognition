@@ -43,8 +43,16 @@ const filterSlice = createSlice({
     setTqFilter: (state, action) => {
       state.selectedTq = action.payload;
     },
+    // setThemeFilter: (state, action) => {
+    //   state.selectedTheme = action.payload;
+    // },
+    // Update the setThemeFilter reducer
     setThemeFilter: (state, action) => {
-      state.selectedTheme = action.payload;
+      state.selectedTheme = action.payload || {
+        colors: {
+          colorShades: ['#063c6f']
+        }
+      };
     },
     setGeoData: (state, action) => {
       state.geoData = action.payload;
@@ -71,7 +79,7 @@ const filterSlice = createSlice({
       .addCase(fetchPlants.fulfilled, (state, action) => {
         state.isLoading = false;
         if (
-          action.payload.data.length > 0 &&
+          action.payload?.data?.length > 0 &&
           state.plants !== action.payload.data
         ) {
           state.plants = action.payload.data;
@@ -91,7 +99,7 @@ const filterSlice = createSlice({
       .addCase(fetchLines.fulfilled, (state, action) => {
         state.isLoading = false;
         if (
-          action.payload.data.length > 0 &&
+          action.payload?.data?.length > 0 &&
           state.lines !== action.payload.data
         ) {
           state.lines = action.payload.data;

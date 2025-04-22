@@ -75,7 +75,8 @@ function Login() {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             dispatch(fetchLoggedInUserDetails(userCredential.user.email));
             // navigate("/oee");
-            navigate("/usermgmt")
+            console.log("Navigating to /oee/usermgmt"); // Add before navigate()
+            navigate("/oee/usermgmt")
 
             // if (userData.role === "Admin") {
             //     const userString = JSON.stringify(userData);

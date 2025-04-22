@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -26,6 +26,8 @@ import { Dashboard, Person, Analytics, Timeline, Settings, DynamicFeed } from '@
 import './layout.css'
 import TopLevelFilter from '../../components/top-level-filter/top-level-filter';
 import { themeSelector } from '../../reducers/filter-reducer';
+
+
 
 const drawerWidth = 240;
 
@@ -102,8 +104,8 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
     const userTheme = useSelector(themeSelector);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
-    const [nestedMenuOpen, setNestedMenuOpen] = useState(false);
+    const [open, setOpen] = useState(true);
+    const [nestedMenuOpen, setNestedMenuOpen] = useState(true);
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorEl2, setAnchorEl2] = useState(null);
     const [endDateTime, setEndDateTime] = useState(new Date());
@@ -117,6 +119,9 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
     const avatarRef = useRef(null);
     const containerRef = useRef(null);
 
+    useEffect(() => {
+        console.log("Layout mounted. Current path:", window.location.pathname);
+    }, []);
 
     const { afterToday } = DateRangePicker;
     const openPopOver = Boolean(anchorEl);
@@ -191,7 +196,10 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
         // <LocomotiveScrollProvider options={{smooth: true}} containerRef={containerRef}>
         //     <main data-scroll-container ref={containerRef}>
         <Box sx={{ display: 'flex' }}>
-            <AppBar position="fixed" open={open} sx={{ background: userTheme["colors"]["colorShades"][0] }}>
+            <AppBar position="fixed" open={open} sx={{ 
+                background: userTheme?.colors?.colorShades?.[0] || '#063c6f',
+                transition: 'background 0.3s ease' // Optional smooth transition
+        }}>
                 <Toolbar>
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start" sx={{ marginRight: 5, ...(open && { display: 'none' }) }}>
                         <MenuIcon />
@@ -220,7 +228,7 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                 <Divider />
                 <List>
                     <ListItem key={1} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }} onClick={() => navigate("/usermgmt")}>
+                        <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }} onClick={() => navigate("/oee/usermgmt")}>
                             <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
                                 <Person />
                             </ListItemIcon>
@@ -309,7 +317,7 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                     <FormControl disabled={selectedEquipmentType.length === 0 ? true : false} variant="outlined" sx={{ minWidth: 150, width: "30%" }} size="small">
                         <InputLabel htmlFor="equipment-select">Equipment</InputLabel>
                         <Select labelId="equipment-select" label="Equipment" id="equipment-select" input={<OutlinedInput label="Equipment" />} MenuProps={MenuProps} value={selectedEquipment} onChange={(event) => { onEquipmentChange(event) }}>
-                            {filteredEquipments.map((equipment, j) => (<MenuItem key={j} value={equipment.eqp_name}>{equipment.eqp_name}</MenuItem>))}
+                            {filteredEquipments?.map((equipment, j) => (<MenuItem key={j} value={equipment.eqp_name}>{equipment.eqp_name}</MenuItem>))}
                         </Select>
                     </FormControl>
                 </Paper>
