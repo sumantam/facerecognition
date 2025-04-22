@@ -17,7 +17,7 @@ async def search_all_employee_service():
         print(f"🔍 Connected to database: {db_name}")  
 
         # ✅ Call SELECT statement
-        users = await conn.fetch('SELECT * FROM public."Users";')
+        users = await conn.fetch('SELECT * FROM public."Employee";')
         user_list = [dict(user) for user in users]
         print("✅ Fetched users:", user_list)
 
