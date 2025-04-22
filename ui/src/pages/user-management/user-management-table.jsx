@@ -59,6 +59,10 @@ const UsersTable = () => {
     console.log("Get Users");
   }, []);
 
+  useEffect(() => {
+    console.log("UserManagement mounted. Current path:", window.location.pathname);
+  }, []);
+  
   const getAllUsers = async () => {
     try {
       await dispatch(fetchAllUsers()).unwrap();
