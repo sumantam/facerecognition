@@ -104,8 +104,8 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
     const userTheme = useSelector(themeSelector);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(true);
-    const [nestedMenuOpen, setNestedMenuOpen] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [nestedMenuOpen, setNestedMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [anchorEl2, setAnchorEl2] = useState(null);
     const [endDateTime, setEndDateTime] = useState(new Date());
