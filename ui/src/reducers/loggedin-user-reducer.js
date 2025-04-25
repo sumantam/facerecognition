@@ -33,12 +33,12 @@ const loginSlice = createSlice({
     builder.addCase(fetchLoggedInUserDetails.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isLoggedIn = true;
-      if (action.payload.data[0])
+      if (action.payload?.data?.[0])
         state.loggedinUser = action.payload.data[0];
       else
         state.loggedinUser = {
           "name": "EYES Admin",
-          "email": "tanmoy@alumnux.com"
+          "email": "ambitionxcare@gmail.com"
         }
     });
 

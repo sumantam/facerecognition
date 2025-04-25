@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { LockOutlined } from "@mui/icons-material";
 import { Avatar, Box, Button, Grid, Link, Paper, TextField, Typography, Stack } from "@mui/material";
 import Logo from '../../images/rsn.png';
-// import AlumnusLogo from '../../images/alumnus_logo.jpg';
-// import MetaSmartLogo from '../../images/metesmart_logo.png';
+// import XYZLogo from '../../images/xyz_logo.jpg';
+// import ABCLogo from '../../images/abc_logo.png';
 import { auth } from '../../firebase/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
@@ -75,7 +75,7 @@ function Login() {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             dispatch(fetchLoggedInUserDetails(userCredential.user.email));
             // navigate("/oee");
-            console.log("Navigating to /oee/usermgmt"); // Add before navigate()
+            console.log("Navigating to:  >>>>>>>>>>>>>  /oee/usermgmt"); // Add before navigate()
             navigate("/oee/usermgmt")
 
             // if (userData.role === "Admin") {
@@ -155,7 +155,7 @@ function Login() {
                             <Typography sx={{ fontFamily: "'Roboto', sans-serif", fontSize: "1.5rem" }}>
                                 C&copy;pyright by
                             </Typography>
-                            <img src={AlumnusLogo} width={120} style={{ marginTop: "-0.4rem" }} alt="Company1 Logo" />
+                            <img src={XYZLogo} width={120} style={{ marginTop: "-0.4rem" }} alt="Company1 Logo" />
                             <img src={MetaSmartLogo} width={120} style={{ marginTop: "-0.4rem" }} alt="Company1 Logo" />
                         </Stack> */}
 
