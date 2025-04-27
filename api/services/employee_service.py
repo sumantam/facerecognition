@@ -19,6 +19,8 @@ async def add_employee_service(
     branchcode: int,
     location: str,
     mobilenumber: str,
+    gender: str,
+    DOB: str,
     img
 ):
     conn = await get_db_connection()
@@ -81,9 +83,32 @@ async def add_employee_service(
             "public"  # ✅ Ensure schema name is passed
         )
 
-        return {"message": "User added successfully"}
+        print ({"message": "User added successfully"})
 
         fd = client.FaceData()
+        host = os.environ.get('HIKVISION_ACT_HOST')
+
+        # Imp parameters used to add an user to the hikvision device
+        faceLibType = 'blackFD'
+        FDID = 1
+        FPID = empid
+        city = location
+        bornTime = DOB
+        faceURL = img_path
+
+        print("Parameters are : ", faceLibType, FDID, FPID, name, gender, bornTime, city, faceURL)
+        result = fd.face_data_add(
+            faceLibType,
+            FDID,
+            FPID,
+            name,
+            gender,
+            bornTime,
+            city,
+            faceURL,
+            host1=host,
+            host2=host
+        )
         # response = fd.face_data_add('blackFD', '1', '4', 'tessst', 'male', '19940226T000000+0500', 'Tashkent', 'https://i.ibb.co/P9rJSTQ/murod.jpg')
         return {"message": "User added successfully"}
     except Exception as e:

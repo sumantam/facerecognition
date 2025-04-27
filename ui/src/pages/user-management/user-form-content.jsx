@@ -261,7 +261,7 @@ const UserFormContent = ({ onClose, email }) => {
             }
           />
         </Grid>
-        <Grid item xs={6} padding={0.5}>
+        {/* <Grid item xs={6} padding={0.5}>
           <TextField
             label="Password"
             value={userBasicData.password}
@@ -273,7 +273,7 @@ const UserFormContent = ({ onClose, email }) => {
             size="small"
             fullWidth
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={6} padding={0.5}>
           <TextField
             label="Name"
@@ -315,9 +315,9 @@ const UserFormContent = ({ onClose, email }) => {
               })
             }
           >
-            <MenuItem value="Executive">Executive</MenuItem>
-            <MenuItem value="Supervisor">Supervisor</MenuItem>
-            <MenuItem value="Operator">Operator</MenuItem>
+            <MenuItem value="Manager">Manager</MenuItem>
+            <MenuItem value="Teaching Staff">TeachingStaff</MenuItem>
+            <MenuItem value="Non-Teaching Staff">Non-TeachingStaff</MenuItem>
           </TextField>
         </Grid>
         <Grid item xs={6} padding={0.5}>
