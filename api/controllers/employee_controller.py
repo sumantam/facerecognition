@@ -1,6 +1,7 @@
 import asyncio
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from api.services.employee_service import add_employee_service  # ✅ Import service function
+from .schemas import EmployeeCreateWrapper
 import threading
 # import os
 
@@ -10,18 +11,44 @@ router = APIRouter()
 
 # ✅ Add a New User (Call Stored Procedure)
 @router.post("/employees")
-async def add_employee(
-    empid: int = Form(...),
-    email: str = Form(...),
-    name: str = Form(...),
-    branchname: str = Form(...),
-    branchcode: int = Form(...),
-    location: str = Form(...),
-    mobilenumber: str = Form(...),
-    gender: str = Form(...),
-    DOB: str = Form(...),
-    img: UploadFile = File(...)
-):
+async def add_employee(payload: EmployeeCreateWrapper ) :
+    # empid: int = Form(...),
+    # email: str = Form(...),
+    # name: str = Form(...),
+    # branchname: str = Form(...),
+    # branchcode: int = Form(...),
+    # location: str = Form(...),
+    # mobilenumber: str = Form(...),
+    # gender: str = Form(...),
+    # DOB: str = Form(...),
+    # img: UploadFile = File(...)
+
+    employee = payload.data
+
+    empid = employee.basic.empid
+    email = employee.basic.email
+    name = employee.basic.name
+    branchname = employee.basic.branchname
+    branchcode = employee.basic.branchcode
+    location = employee.basic.location
+    mobilenumber = employee.basic.mobileNumber
+    gender = employee.basic.gender
+    DOB = employee.basic.DOB
+    img_url = employee.img
+
+    print("Inside call to add_employee:")
+    print("Gender:", gender, "DOB:", DOB)
+    print("Image URL:", img_url)
+
+    # Call your service here normally
+    # result = await add_employee_service(...)
+
+    return {"message": "Employee created"}
+
+    # img: UploadFile = File(...)
+
+    return
+
     try:
         print("Inside the call to employees")
         print ("Gender", gender, "DOB", DOB)

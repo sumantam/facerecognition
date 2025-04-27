@@ -22,6 +22,9 @@ const UserFormContent = ({ onClose, email }) => {
   const [userBasicData, setUserData] = useState({
     name: "",
     role: "",
+    empid: "",
+    branchname: "HQ",
+    branchcode: "1000",
     responsibility: "",
     countryCode: "91",
     mobileNumber: "9999999999",
@@ -29,6 +32,7 @@ const UserFormContent = ({ onClose, email }) => {
     designation: "Default",
     password: "",
     location: "",
+    DOB:""
   }); 
   const dispatch = useDispatch();
   const loggedInUser = useSelector(loggedinUserSelector);
@@ -276,10 +280,46 @@ const UserFormContent = ({ onClose, email }) => {
         </Grid> */}
         <Grid item xs={6} padding={0.5}>
           <TextField
+            label="EmployeeId"
+            value={userBasicData.empid}
+            onChange={(e) =>
+              setUserData({ ...userBasicData, empid: e.target.value })
+            }
+            margin="normal"
+            size="small"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={6} padding={0.5}>
+          <TextField
             label="Name"
             value={userBasicData.name}
             onChange={(e) =>
               setUserData({ ...userBasicData, name: e.target.value })
+            }
+            margin="normal"
+            size="small"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={6} padding={0.5}>
+          <TextField
+            label="Branch Name"
+            value={userBasicData.branchname}
+            onChange={(e) =>
+              setUserData({ ...userBasicData, branchname: e.target.value })
+            }
+            margin="normal"
+            size="small"
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={6} padding={0.5}>
+          <TextField
+            label="Branch Code"
+            value={userBasicData.branchcode}
+            onChange={(e) =>
+              setUserData({ ...userBasicData, branchcode: e.target.value })
             }
             margin="normal"
             size="small"
@@ -344,6 +384,52 @@ const UserFormContent = ({ onClose, email }) => {
             fullWidth
           />
         </Grid>
+        <Grid item xs={6} padding={0.5}>
+          <TextField
+            select
+            fullWidth
+            margin="normal"
+            size="small"
+            label="Gender"
+            onChange={(e) =>
+              setUserData({
+                ...userBasicData,
+                gender: e.target.value,
+              })
+            }
+          >
+          <MenuItem value="male">Male</MenuItem>
+          <MenuItem value="female">Female</MenuItem>
+          </TextField>
+        </Grid>
+        {/* <Grid item xs={6} padding={0.5}>
+          <TextField
+            size="small"
+            label="Gender"
+            value={userBasicData.gender}
+            onChange={(e) => {
+              setUserData({ ...userBasicData, gender: e.target.value });
+            }}
+            margin="normal"
+            fullWidth
+          >
+          <MenuItem value="Male">male</MenuItem>
+          <MenuItem value="Female">female</MenuItem>
+          </TextField>
+        </Grid> */}
+        <Grid item xs={6} padding={0.5}>
+          <TextField
+            size="small"
+            label="DOB"
+            value={userBasicData.DOB}
+            onChange={(e) => {
+              setUserData({ ...userBasicData, DOB: e.target.value });
+            }}
+            margin="normal"
+            fullWidth
+          />
+        </Grid>
+        {/* img: UploadFile = File(...) */}
         <Grid item xs={6} padding={0.5}>
           {userBasicData.responsibility === "Operator" && (
             <TextField
