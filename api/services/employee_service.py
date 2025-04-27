@@ -90,8 +90,8 @@ async def add_employee_service(
 
         # Imp parameters used to add an user to the hikvision device
         faceLibType = 'blackFD'
-        FDID = 1
-        FPID = empid
+        FDID = str(1)
+        FPID = str(empid)
         city = location
         bornTime = DOB
         faceURL = img_path

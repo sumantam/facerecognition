@@ -87,6 +87,10 @@ class FaceData(object):
             "faceURL": faceURL
             }
         '''
+
+        # print("Dump out the body")
+        # print(json.dumps(body_new))
+        # print(path1_new)
         response = requests.post(path1_new, data=json.dumps(body_new), auth=auth)
         print("First response", response)
         #response2 = requests.post(path2, data=json.dumps(body), auth=auth)
