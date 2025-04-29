@@ -33,10 +33,10 @@ async def add_employee_service(
         # ✅ Save the image file to a local folder
         img_folder = "uploaded_images"
         os.makedirs(img_folder, exist_ok=True)  # ✅ Create folder if it doesn't exist
-        img_path = f"{img_folder}/{empid}_{img.filename}"
+        img_path = f"{img_folder}/{empid}.jpg"
 
-        with open(img_path, "wb") as buffer:
-            shutil.copyfileobj(img.file, buffer)
+        # with open(img_path, "wb") as buffer:
+        #     shutil.copyfileobj(img.file, buffer)
 
         # ✅ Convert to JSON format for PostgreSQL jsonb field
         img_json = json.dumps({"path": img_path})

@@ -270,7 +270,13 @@ const UserFormContent = ({ onClose, email }) => {
               console.log(
                 `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
               );
-              setSelectedImage(compressedFile);
+
+              // const convertedFile = new File(
+              //   [compressedFile],
+              //   imageFile.name.replace(/\.\w+$/, ".jpg"), // rename to .jpg
+              //   { type: compressedFile.type }
+              // );
+              setSelectedImage(imageFile);
               //console.log('hello', URL.createObjectURL(selectedImage))
             } catch (e) {
               setSelectedImage(null);
