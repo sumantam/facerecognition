@@ -50,7 +50,7 @@ class FaceData(object):
     
     def face_data_add(self, faceLibType, FDID, FPID, name, gender, bornTime, city, faceURL, host1=None, host2=None):
         #path1 = host1+'/ISAPI/Intelligent/FDLib/FaceDataRecord?format=json'
-        print(" >>>> faceURL ", faceURL)
+        # print(" >>>> faceURL ", faceURL)
         path1_new = f'http://10.0.0.10/ISAPI/AccessControl/UserInfo/Record?format=json'
         body_new = {
             "UserInfo": {
