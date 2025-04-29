@@ -1,7 +1,9 @@
 import asyncio
+import json
+from pydantic import ValidationError
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from api.services.employee_service import add_employee_service  # ✅ Import service function
-from .schemas import EmployeeCreateWrapper
+from .schemas import EmployeeData
 import threading
 # import os
 
@@ -9,9 +11,13 @@ import threading
 # ✅ Create API Router
 router = APIRouter()
 
+# async def add_employee(payload: EmployeeCreateWrapper ) :
 # ✅ Add a New User (Call Stored Procedure)
 @router.post("/employees")
-async def add_employee(payload: EmployeeCreateWrapper ) :
+async def add_employee(
+    data: str = Form(...),
+    img: UploadFile = File(...)
+):
     # empid: int = Form(...),
     # email: str = Form(...),
     # name: str = Form(...),
@@ -23,7 +29,12 @@ async def add_employee(payload: EmployeeCreateWrapper ) :
     # DOB: str = Form(...),
     # img: UploadFile = File(...)
 
-    employee = payload.data
+    try:
+        parsed = json.loads(data)
+        employee = EmployeeData(**parsed)
+    except (json.JSONDecodeError, ValidationError) as e:
+            raise HTTPException(status_code=400, detail=f"Invalid data: {str(e)}")
+    # employee = payload.data
 
     empid = employee.basic.empid
     email = employee.basic.email
@@ -34,20 +45,23 @@ async def add_employee(payload: EmployeeCreateWrapper ) :
     mobilenumber = employee.basic.mobileNumber
     gender = employee.basic.gender
     DOB = employee.basic.DOB
-    img_url = employee.img
+    # img_url = employee.img
 
     print("Inside call to add_employee:")
-    print("Gender:", gender, "DOB:", DOB)
-    print("Image URL:", img_url)
+
+    print(f"Employee name: {name}")
+    print(f"Employee gender: {gender}")
+    print(f"Employee DOB: {DOB}")
+    print(f"Image filename: {img.filename}")
 
     # Call your service here normally
     # result = await add_employee_service(...)
 
-    return {"message": "Employee created"}
+    # return {"message": "Employee created"}
 
     # img: UploadFile = File(...)
 
-    return
+    # return
 
     try:
         print("Inside the call to employees")

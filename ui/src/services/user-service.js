@@ -1,4 +1,4 @@
-import { deleteItem, getWithMainThread, update, post } from "./service-base";
+import { deleteItem, getWithMainThread, update, post, postForFileUpload } from "./service-base";
 
 const getLoggedInUserDetails = async (email) => {
   return await getWithMainThread(`users/getLoggedInUserDetails`, { email: email });
@@ -23,7 +23,7 @@ const getResponsibilities = async (type, domain) => {
 const createUser = async (data) => {
   // return await post("/users/createUser", data);
   console.log ("The data got is the following :", data);
-  return await post("employees", data);
+  return await postForFileUpload("employees", data);
 };
 
 const getLastDate = async () => {

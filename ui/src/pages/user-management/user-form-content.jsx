@@ -105,34 +105,64 @@ const UserFormContent = ({ onClose, email }) => {
     e.preventDefault();
     console.log(selectedManager);
     console.log(selectedManager == []);
-    const newFormData = {
-      data: {
-        basic: userBasicData,
-        img: selectedImage ? URL.createObjectURL(selectedImage) : null,
-        relation: {
-          mgrList:
-            selectedManager.length === 0
-              ? []
-              : [
-                  {
-                    email: selectedManager.email,
-                  },
-                ],
-          reporteeList: Array.isArray(selectedReportees)
-            ? selectedReportees.map((reportee) => ({
-                email: reportee.email,
-              }))
-            : [],
-        },
-      },
+    const formData = new FormData();
+    // const newFormData = {
+    //   data: {
+    //     basic: userBasicData,
+    //     // img: selectedImage ? URL.createObjectURL(selectedImage) : null,
+    //     relation: {
+    //       mgrList:
+    //         selectedManager.length === 0
+    //           ? []
+    //           : [
+    //               {
+    //                 email: selectedManager.email,
+    //               },
+    //             ],
+    //       reporteeList: Array.isArray(selectedReportees)
+    //         ? selectedReportees.map((reportee) => ({
+    //             email: reportee.email,
+    //           }))
+    //         : [],
+    //     },
+    //   },
+    // };
+
+    const data = {
+      basic: userBasicData ,
+      relation: {
+              mgrList:
+                selectedManager.length === 0
+                  ? []
+                  : [
+                      {
+                        email: selectedManager.email,
+                      },
+                    ],
+              reporteeList: Array.isArray(selectedReportees)
+                ? selectedReportees.map((reportee) => ({
+                    email: reportee.email,
+                  }))
+                : [],
+            }
     };
-    console.log("this is the new form data prior try", newFormData);
+  
+    // Attach JSON string as 'data'
+    formData.append("data", JSON.stringify(data));
+  
+    if (!selectedImage) {
+      alert("Please select an image before submitting.");
+      return;
+    }
+    // Attach real file
+    formData.append("img", selectedImage);
+    console.log("this is the new form data prior try", formData);
     onClose();
     try {
-      console.log("this is the new form data post try", newFormData);
-      const response = await dispatch(createUser(newFormData)).unwrap();
+      console.log("this is the new form data post try", formData);
+      const response = await dispatch(createUser(formData)).unwrap();
       if (response.status === 201) {
-        console.log("this is response", newFormData.data.basic);
+        console.log("this is response", formData.data.basic);
         toast.success("User added successfully ", {
           position: "top-right",
           autoClose: 3000,

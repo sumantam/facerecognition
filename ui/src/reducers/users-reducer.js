@@ -22,7 +22,7 @@ export const deleteUser = createAsyncThunk("deleteUser", async (user) => {
 });
 export const createUser = createAsyncThunk("createUser", async (user) => {
   const createUser = await userService.createUser(user);
-  return { email: user.data.basic.email, name: user.data.basic.name };
+  return createUser.data;
 });
 
 const usersSlice = createSlice({
