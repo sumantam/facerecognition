@@ -53,6 +53,10 @@ async def create_database(db_name: str):
             branch_sql = f.read()
         await conn.execute(branch_sql)
 
+        with open("api/database/event.sql", "r") as f:
+            event_sql = f.read()
+        await conn.execute(event_sql)
+
         print(f"Schema and stored procedures initialized in '{db_name}'.")
 
     except Exception as e:
