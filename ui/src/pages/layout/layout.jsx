@@ -243,12 +243,12 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                         </ListItemButton>
                         <Collapse in={nestedMenuOpen} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                                {/* <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/smt')}>
+                                <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/smt')}>
                                     <ListItemIcon>
                                         <Analytics />
                                     </ListItemIcon>
                                     <ListItemText primary="SMT Dashboard" />
-                                </ListItemButton> */}
+                                </ListItemButton>
                                 <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/real-time')}>
                                     <ListItemIcon>
                                         <DynamicFeed />
@@ -260,8 +260,8 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                                         <Insights />
                                     </ListItemIcon>
                                     <ListItemText primary="Breakdown Analysis" />
-                                </ListItemButton>
-                                <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/breakdown2')}>
+                                </ListItemButton> */}
+                                {/*<ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/breakdown2')}>
                                     <ListItemIcon>
                                         <Dashboard />
                                     </ListItemIcon>

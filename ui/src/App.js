@@ -9,10 +9,10 @@ const Login = lazy(() => import('./pages/login/login'));
 const Layout = lazy(() => import('./pages/layout/layout'));
 const ForgotPassword = lazy(() => import('./pages/forgot-password/forgot-password'));
 const SystemDefinition = lazy(() => import('./pages/system-definition/system-definition'));
-// const Dashboard = lazy(() => import('./pages/dashboards/dashboard'));
+const Dashboard = lazy(() => import('./pages/dashboards/dashboard'));
 // const LandingWorldMap = lazy(() => import('./pages/landing-world-map/landing-world-map'));
 // const SMTDashboard = lazy(() => import('./pages/dashboards/smt-dashboard/smt-dashboard'));
-// const RealTimeDashboard = lazy(() => import('./pages/dashboards/real-time-dashboard/real-time-dashboard'));
+const RealTimeDashboard = lazy(() => import('./pages/dashboards/real-time-dashboard/real-time-dashboard'));
 // const MicrostopDashboard = lazy(() => import('./pages/dashboards/microstop-dashboard/microstop-dashboard'));
 // const BreakdownAnalysisDashboard = lazy(() => import('./pages/dashboards/breakdown-analysis/breakdown-dashboard'));
 // const BreakdownDashboard2 = lazy(() => import('./pages/dashboards/breakdown-dashboard/breakdown-dashboard'));
@@ -34,15 +34,17 @@ const App = () => {
             <Route index element={<UserManagement />} />
           </Route> */}
 
-          <Route path="/oee" element={<Layout equipments={[]} />}>
+          {/* <Route path="/oee" element={<Layout equipments={[]} />}>
             <Route path="usermgmt" element={<UserManagement />} />
-            {/* Add more child routes here if needed */}
-          </Route>
-          {/* <Route path='/oee' element={<RequireAuth><Layout /></RequireAuth>}>
-            <Route path="" element={<Navigate to="dashboard" />} />
-            <Route path="userForm" element={<UserForm />} />
-            <Route path='systemdefinition' element={<SystemDefinition />} />
           </Route> */}
+          <Route path='/oee' element={<RequireAuth><Layout /></RequireAuth>}>
+            <Route path="usermgmt" element={<UserManagement />} />
+            <Route path="" element={<Navigate to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="dashboard/real-time" element={<RealTimeDashboard />} />
+            {/* <Route path="userForm" element={<UserForm />} />
+            <Route path='systemdefinition' element={<SystemDefinition />} /> */}
+          </Route>
           {/* <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='*' element={<NoMatch />} /> */}
           {/* 404 catch-all */}
