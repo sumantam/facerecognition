@@ -37,7 +37,7 @@ const loginSlice = createSlice({
         state.loggedinUser = action.payload.data[0];
       else
         state.loggedinUser = {
-          "name": "EYES Admin",
+          "name": "AYAN Admin",
           "email": "ambitionxcare@gmail.com"
         }
     });

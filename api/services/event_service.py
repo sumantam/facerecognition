@@ -7,6 +7,7 @@ from datetime import datetime
 from fastapi import HTTPException
 import api.hikvision_isapi_wrapper as client
 from api.db import get_db_connection
+import asyncio
 
 # ✅ Load environment variables
 load_dotenv()
@@ -22,7 +23,7 @@ class EventService:
         result = await self.conn.fetchval(query)
 
         if result == 0:
-            default_checkpoint = datetime(2025, 1, 1)
+            default_checkpoint = datetime(2025, 4, 30)
             insert_query = f'''
                 INSERT INTO "{self.schema_name}"."LastEventCheckpoint"(last_event_time)
                 VALUES ($1);
@@ -42,6 +43,7 @@ class EventService:
         await self.conn.execute(query, new_time)
         self._last_event_time = new_time
         print(f"🕒 Updated last event time to: {new_time}")
+        asyncio.sleep(20)
 
     def callback(self, event):
         event_time_str = event.get('date')
@@ -65,7 +67,7 @@ class EventService:
             await self.ensure_event_checkpoint()
             await self.load_last_event_time()
 
-            event_instance = client.Event()
+            event_instance = client.Event(self._last_event_time)
             print("🎧 Listening to events...")
             event_instance.start_listen_events(self.callback)
             print(event_instance.get_status())

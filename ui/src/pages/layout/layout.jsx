@@ -206,7 +206,7 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                         {/* <img src={Icon} alt="Company Icon" /> */}
                     </IconButton>
                     <img src={Icon} alt="Company Icon" style={{ width: "50px", height: "50px" }} />
-                    <Typography variant="h5" component="div" sx={{ marginRight: "1vw" }}>{"EYES"}</Typography>
+                    <Typography variant="h5" component="div" sx={{ marginRight: "1vw" }}>{"AYAN"}</Typography>
                     <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
                         <TopLevelFilter />
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -279,12 +279,12 @@ export default function Layout({ items, isSMTDashboard, equipments }) {
                                     </ListItemIcon>
                                     <ListItemText primary="OEE Accelerator" />
                                 </ListItemButton> */}
-                                <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/production-line-state-time')}>
+                                {/* <ListItemButton sx={{ pl: 4 }} onClick={() => navigate('dashboard/production-line-state-time')}>
                                     <ListItemIcon>
                                         <Timeline />
                                     </ListItemIcon>
                                     <ListItemText primary="Production Line State Time" />
-                                </ListItemButton>
+                                </ListItemButton> */}
                             </List>
                         </Collapse>
                         {/* <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>

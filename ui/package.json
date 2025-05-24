@@ -11,8 +11,8 @@
     "@mui/material": "^5.16.4",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-charts": "^7.11.0",
-    "@mui/x-data-grid": "^7.11.0",
-    "@mui/x-data-grid-generator": "^7.11.0",
+    "@mui/x-data-grid": "^5.17.24",
+    "@mui/x-data-grid-generator": "^5.17.24",
     "@mui/x-date-pickers": "^7.22.3",
     "@reduxjs/toolkit": "^2.2.6",
     "@testing-library/jest-dom": "^5.17.0",
@@ -48,21 +48,25 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  
-"eslintConfig": {
-  "extends": [
-    "react-app"
-  ],
-  "overrides": [
-    {
-      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
-      "env": {
-        "jest": true
-      },
-      "plugins": ["jest"]
-    }
-  ]
-},  
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/**/*.[jt]s?(x)",
+          "**/?(*.)+(spec|test).[jt]s?(x)"
+        ],
+        "env": {
+          "jest": true
+        },
+        "plugins": [
+          "jest"
+        ]
+      }
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
