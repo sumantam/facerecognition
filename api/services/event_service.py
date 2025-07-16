@@ -8,6 +8,7 @@ from fastapi import HTTPException
 import api.hikvision_isapi_wrapper as client
 from api.db import get_db_connection
 import asyncio
+import random 
 
 # ✅ Load environment variables
 load_dotenv()
@@ -70,7 +71,10 @@ class EventService:
             event_instance = client.Event(self._last_event_time)
             print("🎧 Listening to events...")
             event_instance.start_listen_events(self.callback)
-            print(event_instance.get_status())
+            manual_search_id = f"{random.getrandbits(32):08x}-{random.getrandbits(16):04x}-{random.getrandbits(16):04x}-{random.getrandbits(16):04x}"
+            print(f"The manual search id is {manual_search_id}")
+            event_instance._search_historical_events(manual_search_id)
+            print(f"The event status is {event_instance.get_status()}")
             print(event_instance.stop_listen_events())
         finally:
             await self.conn.close()

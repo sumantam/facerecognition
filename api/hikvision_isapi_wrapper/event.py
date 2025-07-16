@@ -1,4 +1,6 @@
 from . import session
+from datetime import timedelta, datetime
+from zoneinfo import ZoneInfo
 import json
 import threading
 
@@ -7,12 +9,27 @@ class Event(object):
     
     def __init__(self, last_event_time):
         self._stop = False
-        self._last_event_time = last_event_time    
+        self._last_event_time = last_event_time
+        print( f"Last Event Time {self._last_event_time}")    
     
     def start_listen_events(self, _callback):
         self._callback = _callback
         x = threading.Thread(target=self._start_listen_events)        
         x.start()
+
+    def search_historical_events(self, search_id, _callback, start_time=None, end_time=None):
+        self._callback = _callback
+
+        # Build argument tuple based on whether optional args are passed
+        args = (search_id,)
+        if start_time or end_time:
+            args += (start_time, end_time)
+        else:
+            args += (None, None)
+
+        x = threading.Thread(target=self._search_historical_events, args=args)
+        x.start()
+
 
     def stop_listen_events(self):
         self._stop = True
@@ -20,18 +37,31 @@ class Event(object):
     def get_status(self):
         return not self._stop
             
-    def search_historical_events(self, start_time, end_time, search_id="manual-search-id"):
+    def _search_historical_events(self,
+                                 search_id, 
+                                 start_time = None, 
+                                 end_time = None 
+                                ):
         url = 'http://10.0.0.10/ISAPI/AccessControl/AcsEvent?format=json'
 
+        print(f"Inside the function {__name__}")
+        
+            # Use India timezone
+        tz = ZoneInfo("Asia/Kolkata")
+
+        # Make timestamps timezone-aware and truncate microseconds
+        startTime = (start_time or self._last_event_time).astimezone(tz).replace(microsecond=0)
+        endTime = (end_time or datetime.now(tz)).astimezone(tz).replace(microsecond=0)
+        
         payload = {
             "AcsEventCond": {
                 "searchID": search_id,
                 "searchResultPosition": 0,
                 "maxResults": 1000,
-                "major": 0,
-                "minor": 0,
-                "startTime": start_time,  # example: "2025-05-01T15:00:00+05:30"
-                "endTime": end_time       # example: "2025-05-02T23:59:59+05:30"
+                "major": 5,
+                "minor": 75,
+                "startTime": startTime.isoformat(),
+                "endTime": endTime.isoformat()
             }
         }
 
