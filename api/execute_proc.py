@@ -19,6 +19,7 @@ async def execute_procedure(db_name:str):
         await conn.execute("CALL createBranchTable($1);", "public")
         await conn.execute("CALL createEmployeeTable($1);", "public")
         await conn.execute("CALL createLastEventCheckpointTable($1);", "public")
+        await conn.execute("CALL createEventTable($1);", "public")
         print("Procedure executed successfully.")
 
     except Exception as e:
