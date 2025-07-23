@@ -59,6 +59,7 @@ class EventService:
         else:
             print(f"⏩ Skipping old event from {event_time}")
 
+        
     async def run(self):
         self.conn = await get_db_connection()
         try:
@@ -73,7 +74,39 @@ class EventService:
             event_instance.start_listen_events(self.callback)
             manual_search_id = f"{random.getrandbits(32):08x}-{random.getrandbits(16):04x}-{random.getrandbits(16):04x}-{random.getrandbits(16):04x}"
             print(f"The manual search id is {manual_search_id}")
-            event_instance._search_historical_events(manual_search_id)
+            result = event_instance._search_historical_events(manual_search_id)
+            records = result["data"]
+            endtime = result["end_time"]
+            
+            # print(" Incoming Records is ", records)
+
+        #  Insert int to the Database after parsing
+            
+            # empID VARCHAR,
+            # name VARCHAR(255),
+            # cardNo VARCHAR(255),
+            # eventTypes VARCHAR(255),
+            # eventTime TIMESTAMP,
+            # last_event_time TIMESTAMP,
+            # schemaName VARCHAR DEFAULT 'public'
+
+            info_list = records["AcsEvent"]["InfoList"]
+            
+            for rec in info_list:
+                # print (rec)
+                # print(f"empId: {rec['employeeNoString']}, name: {rec['name']}, cardNo: {rec['cardReaderNo']}, eventTypes: {rec['attendanceStatus']}, eventTime: {rec['time']}, lastEventTime: {endtime}")
+                await self.conn.execute("""
+                    CALL addEvent($1, $2, $3, $4, $5, $6, 'public');
+                """, *(
+                    rec['employeeNoString'],
+                    rec['name'],
+                    str(rec['cardReaderNo']),
+                    rec['attendanceStatus'],
+                    datetime.fromisoformat(rec['time']),
+                    datetime.fromisoformat(endtime)
+                ))
+                
+            print("Data inserted successfully.")            
             print(f"The event status is {event_instance.get_status()}")
             print(event_instance.stop_listen_events())
         finally:

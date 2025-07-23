@@ -75,8 +75,9 @@ class Event(object):
         response.raise_for_status()
 
         data = response.json()
-        print(f"✅ Response: {json.dumps(data, indent=2)}")
-        return data
+        # print(f"✅ Response: {json.dumps(data, indent=2)}")
+        
+        return {"data": data,"end_time": endTime.isoformat()}
 
 
     def _start_listen_events(self):

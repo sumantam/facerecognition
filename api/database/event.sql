@@ -33,14 +33,14 @@ DECLARE
     create_event_command TEXT;
 BEGIN
     RAISE NOTICE 'Inside the procedure createEventTable';
-    
+
     create_event_command := format('
         CREATE TABLE IF NOT EXISTS %I."Event" (
             id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-            empID INTEGER UNIQUE,
+            empID INTEGER,
             name VARCHAR(255) NOT NULL,
             cardNo VARCHAR(255) NOT NULL,
-            attendanceStatus VARCHAR(255) NOT NULL,
+            eventTypes VARCHAR(255) NOT NULL,
             eventTime TIMESTAMP NOT NULL,
             last_event_time TIMESTAMP NOT NULL
         );', schemaName
@@ -57,8 +57,8 @@ CREATE OR REPLACE PROCEDURE addEvent(
     name VARCHAR(255),
     cardNo VARCHAR(255),
     eventTypes VARCHAR(255),
-    eventTime TIMESTAMP,
-    last_event_time TIMESTAMP,
+    eventTime TIMESTAMP WITH TIME ZONE,
+    last_event_time TIMESTAMP WITH TIME ZONE,
     schemaName VARCHAR DEFAULT 'public'
 )
 LANGUAGE plpgsql AS $$
