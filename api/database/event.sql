@@ -13,7 +13,7 @@ BEGIN
     create_chkpoint_command := format('
         CREATE TABLE IF NOT EXISTS %I."LastEventCheckpoint" (
             id SERIAL PRIMARY KEY,
-            last_event_time TIMESTAMP NOT NULL DEFAULT now()
+            last_event_time TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
         );', schemaName
     );
 

@@ -40,8 +40,9 @@ class EventService:
         print(f"📌 Loaded last event time: {self._last_event_time}")
 
     async def update_last_event_time(self, new_time):
+        print(f"Last Event Time -------------------------------{new_time}")
         query = f'UPDATE "{self.schema_name}"."LastEventCheckpoint" SET last_event_time = $1'
-        await self.conn.execute(query, new_time)
+        await self.conn.execute(query, datetime.fromisoformat(new_time))
         self._last_event_time = new_time
         print(f"🕒 Updated last event time to: {new_time}")
         asyncio.sleep(20)
@@ -105,7 +106,8 @@ class EventService:
                     datetime.fromisoformat(rec['time']),
                     datetime.fromisoformat(endtime)
                 ))
-                
+            
+            await self.update_last_event_time(endtime)
             print("Data inserted successfully.")            
             print(f"The event status is {event_instance.get_status()}")
             print(event_instance.stop_listen_events())
