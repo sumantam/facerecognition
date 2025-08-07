@@ -2,7 +2,7 @@
 import os
 from requests.auth import HTTPDigestAuth
 from requests import Session
-from .tools import LiveServerSession
+from .tools import LiveServerSession, TimedSession
 
 # Load .env file
 #load_dotenv()
@@ -25,9 +25,11 @@ if HIKVISION_ACT_LOGIN is None or HIKVISION_ACT_PASSWORD is None:
     )
 
 auth = HTTPDigestAuth(HIKVISION_ACT_LOGIN, HIKVISION_ACT_PASSWORD)
-session = Session()
+# session = Session()
+# __init__.py
+session = TimedSession(HIKVISION_ACT_LOGIN, HIKVISION_ACT_PASSWORD)
 
-session.auth = auth
+# session.auth = auth
 
 
 from .person import Person
