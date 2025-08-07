@@ -24,7 +24,7 @@ class EventService:
         result = await self.conn.fetchval(query)
 
         if result == 0:
-            default_checkpoint = datetime(2025, 4, 30)
+            default_checkpoint = datetime(2025, 1, 1)
             insert_query = f'''
                 INSERT INTO "{self.schema_name}"."LastEventCheckpoint"(last_event_time)
                 VALUES ($1);
@@ -79,7 +79,7 @@ class EventService:
             records = result["data"]
             endtime = result["end_time"]
             
-            # print(" Incoming Records is ", records)
+            print(" Incoming Records is ", records)
 
         #  Insert int to the Database after parsing
             
@@ -91,7 +91,13 @@ class EventService:
             # last_event_time TIMESTAMP,
             # schemaName VARCHAR DEFAULT 'public'
 
-            info_list = records["AcsEvent"]["InfoList"]
+            return
+            # info_list = records["AcsEvent"]["InfoList"]
+            # info_list = records["InfoList"]
+            
+            print(f"Information List {info_list}")
+            
+            return
             
             for rec in info_list:
                 # print (rec)
@@ -99,11 +105,11 @@ class EventService:
                 await self.conn.execute("""
                     CALL addEvent($1, $2, $3, $4, $5, $6, 'public');
                 """, *(
-                    rec['employeeNoString'],
-                    rec['name'],
-                    str(rec['cardReaderNo']),
-                    rec['attendanceStatus'],
-                    datetime.fromisoformat(rec['time']),
+                    rec.get('employeeNoString'),
+                    rec.get('name'),
+                    str(rec.get('cardReaderNo')),
+                    rec.get('attendanceStatus', 'UNKNOWN'),
+                    datetime.fromisoformat(rec.get('time')),
                     datetime.fromisoformat(endtime)
                 ))
             
