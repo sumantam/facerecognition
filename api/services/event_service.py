@@ -79,26 +79,8 @@ class EventService:
             records = result["data"]
             endtime = result["end_time"]
             
-            print(" Incoming Records is ", records)
-
-        #  Insert int to the Database after parsing
-            
-            # empID VARCHAR,
-            # name VARCHAR(255),
-            # cardNo VARCHAR(255),
-            # eventTypes VARCHAR(255),
-            # eventTime TIMESTAMP,
-            # last_event_time TIMESTAMP,
-            # schemaName VARCHAR DEFAULT 'public'
-
-            # return
-            # info_list = records["AcsEvent"]["InfoList"]
-            # info_list = records["InfoList"]
-            
-            # print(f"Information List {info_list}")
-            
-            # return
-            
+            # print(" Incoming Records is ", records)
+    
             for rec in records:
                 # print (rec)
                 # print(f"empId: {rec['employeeNoString']}, name: {rec['name']}, cardNo: {rec['cardReaderNo']}, eventTypes: {rec['attendanceStatus']}, eventTime: {rec['time']}, lastEventTime: {endtime}")
