@@ -91,15 +91,15 @@ class EventService:
             # last_event_time TIMESTAMP,
             # schemaName VARCHAR DEFAULT 'public'
 
-            return
+            # return
             # info_list = records["AcsEvent"]["InfoList"]
             # info_list = records["InfoList"]
             
-            print(f"Information List {info_list}")
+            # print(f"Information List {info_list}")
             
-            return
+            # return
             
-            for rec in info_list:
+            for rec in records:
                 # print (rec)
                 # print(f"empId: {rec['employeeNoString']}, name: {rec['name']}, cardNo: {rec['cardReaderNo']}, eventTypes: {rec['attendanceStatus']}, eventTime: {rec['time']}, lastEventTime: {endtime}")
                 await self.conn.execute("""
@@ -118,13 +118,5 @@ class EventService:
             print(f"The event status is {event_instance.get_status()}")
             print(event_instance.stop_listen_events())
         finally:
-            await self.conn.close()
-            
-# async def get_event_service():
-#     try:
-#         service = EventService()
-#         await service.run()
-#     except Exception as e:
-#         print(f"❌ Error: {e}")
-#         raise HTTPException(status_code=500, detail=f"Error retrieving events: {e}")
+            await self.conn.close()            
 
