@@ -30,6 +30,13 @@ async def execute_procedure(db_name:str):
 
 
 async def get_event_service():
+    
+    db_bypass_status=os.getenv("BYPASS_DEVICE", "true")
+    
+    if (db_bypass_status.lower()=="true") :
+        return
+    
+    print(f"Trying to pull data from the devices .......{db_bypass_status}")
     try:
         service = EventService()
         await service.run()
